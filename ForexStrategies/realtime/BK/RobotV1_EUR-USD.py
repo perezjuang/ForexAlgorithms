@@ -1,70 +1,43 @@
-# Librerias Generales del Sistema
-# ==============================================================================
-import datetime as dt
-import gc
 import os
-import time
 
-import pandas
-
-import Probabilidades.RegrsionLineal2 as regresionlineal2
-import itertools
-# Librerias Forex
-# ==============================================================================
 import fxcmpy
-# Librerias Financieras
+import time
+import datetime as dt
+from pyti.simple_moving_average import simple_moving_average as sma
+import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-
-# Tratamiento de datos
-# ==============================================================================
 import pandas as pd
-import configparser  # https://docs.python.org/3/library/configparser.html
+import Probabilidades.RegrsionLineal2 as regresionlineal2
 
-gc.collect()
-config = configparser.ConfigParser()
-config.read('RobotV1ForexConfig.ini')
-
-pd.set_option("display.max_rows", None, "display.max_columns", None)
 
 # Extraemos la Moneda del Nombre del Archivo
 fileName = str(os.path.basename(__file__))
 fileName = fileName.replace(".py", "")
-fileName = fileName.replace("RobotV1_", "")
+fileName = fileName.replace("RobotV2_", "")
 symbol = fileName.replace("-", "/")
 
-# Exraemos informacion para conexion
-conectionConfig = config['conection']
-token = conectionConfig['token']
+# Available periods : 'm1', 'm5', 'm15', 'm30', 'H1', 'H2', 'H3', 'H4', 'H6', 'H8','D1', 'W1', or 'M1'.
+timeframe = "m5"
+timeframe_sup = "H4"
+fast_sma_periods = 10
+slow_sma_periods = 30
 
-# Configuracion del Frame
-# Periodos : 'm1', 'm5', 'm15', 'm30', 'H1', 'H2', 'H3', 'H4', 'H6', 'H8','D1', 'W1', or 'M1'.
-timeframeConfig = config['timeframe']
-
-timeframe = timeframeConfig['timeframe']
-numberofcandles = int(timeframeConfig['numberofcandles'])
-
-timeframe_sup = timeframeConfig['timeframe_sup']
-numberofcandles_sup = int(timeframeConfig['numberofcandles_sup'])
-numberofregresion_sup = int(timeframeConfig['numberofregresion_sup'])
-
-# Configuracion de las SMA
-fast_sma_periods = int(timeframeConfig['fast_sma_periods'])
-slow_sma_periods = int(timeframeConfig['slow_sma_periods'])
-
-numberofregresion = int(timeframeConfig['numberofregresion'])
-
-# Configuracion Operaciones Trade
-operationsConfig = config['operations']
-amount = int(operationsConfig['amount'])
-stop = int(operationsConfig['stop'])
-limit = int(operationsConfig['limit'])
-trailing_step = int(operationsConfig['trailing_step'])
+amount = 3
+stop = -10
+limit = 30
 
 # Global Variables
 pricedata = None
 pricedata_sup = None
-y_pred = None
+
+numberofcandles = 300
+
+numberofcandles_sup = 6
+numberofregresion_sup = 6
+
+con = fxcmpy.fxcmpy(config_file='../fxcm.cfg')
+
 pricedata_stadistics = pd.DataFrame([],
                                     columns=['rowid',
                                              'bidclose',
@@ -79,100 +52,75 @@ pricedata_stadistics = pd.DataFrame([],
 
 pricedata_stadistics_sup = pd.DataFrame([],
                                         columns=['rowid',
-                                                 'bidclose', 'askhigh', 'asklow',
-                                                 'y_pred_sup', 'y_pred_askhigh', 'y_pred_asklow', 'date'
+                                                 'bidclose', 'bidhigh', 'bidlow',
+                                                 'y_pred_sup', 'y_pred_bidhigh', 'y_pred_bidlow', 'date'
                                                  ])
+
+
 
 pricedata_stadistics_proyeccion = pd.DataFrame([],
                                                columns=['rowid',
-                                                        'y_pred_sup', 'y_pred_askhigh', 'y_pred_asklow', 'date'
+                                                        'y_pred_sup', 'y_pred_bidhigh', 'y_pred_bidlow', 'date'
                                                         ])
-pricedata_stadistics_sup_tmp = pricedata_stadistics_sup
 
-print("Iniciando Conexion...")
-con = fxcmpy.fxcmpy(access_token=token, log_level="error", log_file=None)
 
-guiConfig = config['gui']
-guishow = int(guiConfig['show'])
 
-lv_posicion_venta = False
-lv_posicion_compra = False
 
-if guishow == 1:
-    print("Iniciando Plotter")
-    plt.style.use('dark_background')
-    plt.ion()  # Enable interactive mode
-    plt.show(block=False)
 
-    fig = plt.figure()
-    fig.canvas.set_window_title('Divisa - ' + symbol)
+plt.style.use('dark_background')
+plt.ion()  # Enable interactive mode
+plt.show(block=False)
+fig = plt.figure()
 
-    ax1 = fig.add_subplot(1, 1, 1)
-    ax1.clear()
-    ax1.set_autoscale_on(True)
+ax1 = fig.add_subplot(1, 1, 1)
+ax1.clear()
+ax1.set_autoscale_on(True)
 
-    linePrice, = ax1.plot([], [], label='Movimiento del Precio ' + timeframe)
-
-    lineEmaFast, = ax1.plot([], [], label='EMA Fast ' + str(fast_sma_periods))
-    # lineEmaSlow, = ax1.plot([], [], label='EMA Slow ' + str(slow_sma_periods))
-
-    # lineBuys, = ax1.plot([], [], 'g^', label='Compras ' + timeframe, )
-    # lineSells, = ax1.plot([], [], 'rv', label='Ventas ' + timeframe)
-    # lineRegr, = ax1.plot([], [], label='Regresion Lineal bidclose ' + timeframe_sup)
-    lineRegraskhigh, = ax1.plot([], [], label='Regresion Lineal askhigh ' + timeframe_sup)
-    lineRegrasklow, = ax1.plot([], [], label='Regresion Lineal asklow ' + timeframe_sup)
-
-    lineRegraskhigh_proyeccion, = ax1.plot([], [], label='Proyeccion Lineal askhigh ' + timeframe_sup)
-    lineRegrasklow_proyeccion, = ax1.plot([], [], label='Proyeccion Lineal asklow ' + timeframe_sup)
-
-else:
-    print("Iniciando sin Plotter")
+linePrice, = ax1.plot([], [], label='Precio ' + timeframe + ' ' + symbol)
+lineEmaFast, = ax1.plot([], [], label='EMA Fast ' + str(fast_sma_periods))
+lineEmaSlow, = ax1.plot([], [], label='EMA Slow ' + str(slow_sma_periods))
+lineRegrbidhigh, = ax1.plot([], [], label='Regresion Lineal bidhigh ' + timeframe_sup)
+lineRegrbidlow, = ax1.plot([], [], label='Regresion Lineal bidlow ' + timeframe_sup)
+lineRegrbidhigh_proyeccion, = ax1.plot([], [], label='Proyeccion Lineal bidhigh ' + timeframe_sup)
+lineRegrbidlow_proyeccion, = ax1.plot([], [], label='Proyeccion Lineal bidlow ' + timeframe_sup)
 
 
 def UpdatePlotter():
-    linePrice.set_data(pricedata['bidclose'].index, pricedata_stadistics['bidclose'].values)
+    global pricedata
+    global pricedata_stadistics
+    linePrice.set_data(pricedata['bidclose'].index, pricedata['bidclose'].values)
     lineEmaFast.set_data(pricedata_stadistics['emaFast'].index, pricedata_stadistics['emaFast'].values)
-    # lineEmaSlow.set_data(pricedata_stadistics['emaSlow'].index, pricedata_stadistics['emaSlow'].values)
+    lineEmaSlow.set_data(pricedata_stadistics['emaSlow'].index, pricedata_stadistics['emaSlow'].values)
 
-    # lineRegr.set_data(pricedata_stadistics['bidclose'].index, pricedata_stadistics['y_pred'].values)
-    lineRegraskhigh.set_data(pricedata_stadistics_sup['y_pred_askhigh'].index,
-                             pricedata_stadistics_sup['y_pred_askhigh'].values)
+    lineRegrbidhigh.set_data(pricedata_stadistics_sup['y_pred_bidhigh'].index,
+                             pricedata_stadistics_sup['y_pred_bidhigh'].values)
 
-    lineRegrasklow.set_data(pricedata_stadistics_sup['y_pred_asklow'].index,
-                            pricedata_stadistics_sup['y_pred_asklow'].values)
+    lineRegrbidlow.set_data(pricedata_stadistics_sup['y_pred_bidlow'].index,
+                            pricedata_stadistics_sup['y_pred_bidlow'].values)
 
-    lineRegrasklow_proyeccion.set_data(pricedata_stadistics_proyeccion['y_pred_asklow'].index,
-                                       pricedata_stadistics_proyeccion['y_pred_asklow'].values)
+    lineRegrbidlow_proyeccion.set_data(pricedata_stadistics_proyeccion['y_pred_bidlow'].index,
+                                       pricedata_stadistics_proyeccion['y_pred_bidlow'].values)
 
-    lineRegraskhigh_proyeccion.set_data(pricedata_stadistics_proyeccion['y_pred_askhigh'].index,
-                                        pricedata_stadistics_proyeccion['y_pred_askhigh'].values)
+    lineRegrbidhigh_proyeccion.set_data(pricedata_stadistics_proyeccion['y_pred_bidhigh'].index,
+                                        pricedata_stadistics_proyeccion['y_pred_bidhigh'].values)
 
-    # lineRegrInf.set_data(pricedata_stadistics['bidclose'].index, pricedata_stadistics['y_pred_inf'].values)
-    # Compras
-    # buys = pricedata_stadistics.iloc[np.where(pricedata_stadistics['position'] == 1.0)]
-    # lineBuys.set_data(buys['bidclose'].index, buys['bidclose'].values)
-
-    # Ventas
-    # sells = pricedata_stadistics.iloc[np.where(pricedata_stadistics['position'] == -1.0)]
-    # lineSells.set_data(sells['bidclose'].index, sells['bidclose'].values)
-
-    ax1.legend(loc='lower center', prop={'size': 7})
+    ax1.legend(loc='best', prop={'size': 7})
     ax1.relim()
-    ax1.autoscale_view(True, True, True)
+    # ax1.autoscale_view(True, True, True)
     plt.draw()
-    plt.pause(0.5)
+    plt.pause(1)
+
 
 def Prepare():
     global pricedata
     global pricedata_sup
-
-    print("Solicitando Precios...")
+    print("Requesting Initial Price Data...")
     pricedata = con.get_candles(symbol, period=timeframe, number=numberofcandles)
     pricedata_sup = con.get_candles(symbol, period=timeframe_sup, number=numberofcandles_sup)
-    print("Precios Iniciales Recibidos")
+    print("Initial Price Data Received...")
 
 
-def StrategyStart():
+def StrategyHeartBeat():
     Update()
     while True:
         currenttime = dt.datetime.now()
@@ -182,103 +130,81 @@ def StrategyStart():
         elif timeframe == "m5" and currenttime.second == 0 and currenttime.minute % 5 == 0:
             if getLatestPriceData():
                 Update()
+            time.sleep(240)
         elif timeframe == "m15" and currenttime.second == 0 and currenttime.minute % 15 == 0:
             if getLatestPriceData():
                 Update()
+            time.sleep(840)
         elif timeframe == "m30" and currenttime.second == 0 and currenttime.minute % 30 == 0:
             if getLatestPriceData():
                 Update()
+            time.sleep(1740)
         elif currenttime.second == 0 and currenttime.minute == 0:
             if getLatestPriceData():
                 Update()
-        if guishow == 1:
-            UpdatePlotter()
+            time.sleep(3540)
+        UpdatePlotter()
 
 
 def getLatestPriceData():
-    global pricedata
-    global pricedata_sup
-    global con
-    currenttime = dt.datetime.now()
-    print("\n" + str(currenttime) + " " + timeframe + " ------------------------------------ ")
-    print("Solicitando Precios...")
     try:
+        global pricedata
+        global pricedata_sup
+        currenttime = dt.datetime.now()
         if currenttime.second == 0 and currenttime.minute == 0:
-            pricedata_sup = con.get_candles(symbol, period=timeframe_sup, number=numberofcandles_sup)
+            new_pricedata_sup = con.get_candles(symbol, period=timeframe_sup, number=numberofcandles_sup)
+            if new_pricedata_sup.index.values[len(new_pricedata_sup.index.values) - 1] != pricedata_sup.index.values[
+                len(pricedata_sup.index.values) - 1]:
+                pricedata_sup = new_pricedata_sup
+            return True
         else:
             new_pricedata = con.get_candles(symbol, period=timeframe, number=numberofcandles)
-            if len(new_pricedata.index.values) > 0:
-                pricedata = new_pricedata
-        print("Precios Recibidos...")
-        return True
-    except Exception as e:
-        print(str(e))
-        print("Error Solicitando Precios  - Reiniciando Conexion... 2 Min")
-        time.sleep(120)
+        if new_pricedata.index.values[len(new_pricedata.index.values) - 1] != pricedata.index.values[
+            len(pricedata.index.values) - 1]:
+            pricedata = new_pricedata
+            return True
+        else:
+            print("No updated prices found, trying again in 10 seconds...")
+            pricedata = new_pricedata
+            return True
+    except:
+        print("An exception occurred Obtaining Prices")
         return False
 
 
 def Update():
-    global pricedata
-    global pricedata_sup
-    global y_pred
-    global lv_posicion_venta
-    global lv_posicion_compra
+    print(str(dt.datetime.now()) + " " + timeframe + " Bar Closed - Running Update Function...")
     # *********************************************************************
     # ** Estadistica General - Regresion Lineal Simple 1
     # *********************************************************************
+
     pricedata_stadistics['bidclose'] = pricedata['bidclose'].values
     pricedata_stadistics['bidopen'] = pricedata['bidopen'].values
     pricedata_stadistics['date'] = pricedata['bidclose'].index
-    pricedata_stadistics['emaFast'] = pricedata_stadistics['bidclose'].rolling(window=fast_sma_periods).mean()
+    # pricedata_stadistics['emaFast'] = pricedata_stadistics['bidclose'].rolling(window=fast_sma_periods).mean()
     # pricedata_stadistics['emaSlow'] = pricedata_stadistics['bidclose'].rolling(window=slow_sma_periods).mean()
-    # pricedata_stadistics['signal'] = np.where((pricedata_stadistics['emaFast'] > pricedata_stadistics['emaSlow']), 1, 0)
-    # pricedata_stadistics['position'] = pricedata_stadistics['signal'].diff()
+    # Calculate Indicators
+    iFastSMA = sma(pricedata['bidclose'], fast_sma_periods)
+    iSlowSMA = sma(pricedata['bidclose'], slow_sma_periods)
+    pricedata_stadistics['emaFast'] = iFastSMA
+    pricedata_stadistics['emaSlow'] = iSlowSMA
     pricedata_stadistics.index = pricedata['bidclose'].index
     pricedata_stadistics['rowid'] = np.arange(len(pricedata_stadistics))
 
-    # *********************************************************************
-    # ** Estadistica General - Precio
-    # *********************************************************************
-    regresionLineal_xx = np.array(pricedata_stadistics['rowid'].tail(numberofregresion).values)
-    regresionLineal_yy = np.array(pricedata_stadistics['bidclose'].tail(numberofregresion).values)
-    regresionLineal_bb = regresionlineal2.estimate_b0_b1(regresionLineal_xx, regresionLineal_yy)
-    y_pred = regresionLineal_bb[0] + regresionLineal_bb[1] * regresionLineal_xx
-
-    numberRegx = len(pricedata_stadistics) - numberofregresion
-    posreg = 0
-    for index, row in pricedata_stadistics.iterrows():
-        if numberRegx <= pricedata_stadistics.loc[index, 'rowid']:
-            pricedata_stadistics.loc[index, 'y_pred'] = y_pred[posreg]
-            posreg = posreg + 1
 
     # *********************************************************************
     # ** Estadistica General - Regresion Lineal
     # *********************************************************************
-
     pricedata_stadistics_sup['bidclose'] = pricedata_sup['bidclose'].values
     pricedata_stadistics_sup['date'] = pricedata_sup['bidclose'].index
-    pricedata_stadistics_sup['askhigh'] = pricedata_sup['askhigh'].values
-    pricedata_stadistics_sup['asklow'] = pricedata_sup['asklow'].values
+    pricedata_stadistics_sup['bidhigh'] = pricedata_sup['bidhigh'].values
+    pricedata_stadistics_sup['bidlow'] = pricedata_sup['bidlow'].values
     pricedata_stadistics_sup.index = pricedata_sup['bidclose'].index
     pricedata_stadistics_sup['rowid'] = np.arange(len(pricedata_stadistics_sup))
 
-    # Regresion al Precio del Cierre bidclose
-    # regresionLineal_xx_sup = np.array(pricedata_stadistics_sup['rowid'].tail(numberofregresion_sup).values)
-    # regresionLineal_yy_sup = np.array(pricedata_stadistics['bidclose'].tail(numberofregresion_sup).values)
-    # regresionLineal_bb_sup = regresionlineal2.estimate_b0_b1(regresionLineal_xx_sup, regresionLineal_yy_sup)
-    # y_pred_sup = regresionLineal_bb_sup[0] + regresionLineal_bb_sup[1] * regresionLineal_xx_sup
-    #
-    # numberRegx = len(pricedata_stadistics_sup) - numberofregresion_sup
-    # posreg = 0
-    # for index, row in pricedata_stadistics_sup.iterrows():
-    #     if numberRegx <= pricedata_stadistics_sup.loc[index, 'rowid']:
-    #         pricedata_stadistics_sup.loc[index, 'y_pred_sup'] = y_pred_sup[posreg]
-    #         posreg = posreg + 1
-
     # Regresion al mas Alto de las velas ======================
     regresionLineal_xx_sup = np.array(pricedata_stadistics_sup['rowid'].tail(numberofregresion_sup).values)
-    regresionLineal_yy_sup = np.array(pricedata_stadistics_sup['askhigh'].tail(numberofregresion_sup).values)
+    regresionLineal_yy_sup = np.array(pricedata_stadistics_sup['bidhigh'].tail(numberofregresion_sup).values)
     regresionLineal_bb_sup = regresionlineal2.estimate_b0_b1(regresionLineal_xx_sup, regresionLineal_yy_sup)
     y_pred_sup = regresionLineal_bb_sup[0] + regresionLineal_bb_sup[1] * regresionLineal_xx_sup
 
@@ -286,12 +212,12 @@ def Update():
     posreg = 0
     for index, row in pricedata_stadistics_sup.iterrows():
         if numberRegx <= pricedata_stadistics_sup.loc[index, 'rowid']:
-            pricedata_stadistics_sup.loc[index, 'y_pred_askhigh'] = y_pred_sup[posreg]
+            pricedata_stadistics_sup.loc[index, 'y_pred_bidhigh'] = y_pred_sup[posreg]
             posreg = posreg + 1
 
     # Regresion al mas bajo de las velas ======================
     regresionLineal_xx_sup = np.array(pricedata_stadistics_sup['rowid'].tail(numberofregresion_sup).values)
-    regresionLineal_yy_sup = np.array(pricedata_stadistics_sup['asklow'].tail(numberofregresion_sup).values)
+    regresionLineal_yy_sup = np.array(pricedata_stadistics_sup['bidlow'].tail(numberofregresion_sup).values)
     regresionLineal_bb_sup = regresionlineal2.estimate_b0_b1(regresionLineal_xx_sup, regresionLineal_yy_sup)
     y_pred_sup = regresionLineal_bb_sup[0] + regresionLineal_bb_sup[1] * regresionLineal_xx_sup
 
@@ -299,140 +225,178 @@ def Update():
     posreg = 0
     for index, row in pricedata_stadistics_sup.iterrows():
         if numberRegx <= pricedata_stadistics_sup.loc[index, 'rowid']:
-            pricedata_stadistics_sup.loc[index, 'y_pred_asklow'] = y_pred_sup[posreg]
+            pricedata_stadistics_sup.loc[index, 'y_pred_bidlow'] = y_pred_sup[posreg]
             posreg = posreg + 1
-
-
-
-
 
     # *********************************************************************
     # ***    Proyecion de Precios * Se puede Mejorar con Ciclo
     # *********************************************************************
     lv_index_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['date']
     lv_rowid_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['rowid']
-    lv_y_pred_askhigh_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_askhigh']
-    lv_y_pred_asklow_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_asklow']
+    lv_y_pred_askhigh_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidhigh']
+    lv_y_pred_asklow_1 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidlow']
 
     lv_index_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['date']
     lv_rowid_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['rowid']
-    lv_y_pred_askhigh_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['y_pred_askhigh']
-    lv_y_pred_asklow_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['y_pred_asklow']
+    lv_y_pred_askhigh_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['y_pred_bidhigh']
+    lv_y_pred_asklow_2 = pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 2]['y_pred_bidlow']
 
     lv_index_base = lv_index_1 - lv_index_2
     lv_rowid_base = lv_rowid_1 - lv_rowid_2
     lv_y_pred_askhigh_base = lv_y_pred_askhigh_1 - lv_y_pred_askhigh_2
     lv_y_pred_asklow_base = lv_y_pred_asklow_1 - lv_y_pred_asklow_2
-    pricedata_stadistics_proyeccion.iloc[0:0]
 
-    pricedata_stadistics_proyeccion.loc[lv_index_1] = pandas.Series(
+    pricedata_stadistics_proyeccion.loc[lv_index_1] = pd.Series(
         {'rowid': lv_rowid_1,
-         'y_pred_askhigh': lv_y_pred_askhigh_1,
-         'y_pred_asklow': lv_y_pred_asklow_1
+         'y_pred_bidhigh': lv_y_pred_askhigh_1,
+         'y_pred_bidlow': lv_y_pred_asklow_1
          })
 
-    pricedata_stadistics_proyeccion.loc[lv_index_1 + lv_index_base] = pandas.Series(
+    pricedata_stadistics_proyeccion.loc[lv_index_1 + lv_index_base] = pd.Series(
         {'rowid': lv_rowid_1 + lv_rowid_base,
-         'y_pred_askhigh': lv_y_pred_askhigh_1 + lv_y_pred_askhigh_base,
-         'y_pred_asklow': lv_y_pred_asklow_1 + lv_y_pred_asklow_base
+         'y_pred_bidhigh': lv_y_pred_askhigh_1 + lv_y_pred_askhigh_base,
+         'y_pred_bidlow': lv_y_pred_asklow_1 + lv_y_pred_asklow_base
          })
 
-    # pricedata_stadistics_proyeccion.loc[lv_index_1 + lv_index_base + lv_index_base] = pandas.Series(
-    #     {'rowid': lv_rowid_1 + lv_rowid_base + lv_rowid_base,
-    #      'y_pred_askhigh': lv_y_pred_askhigh_1 + lv_y_pred_askhigh_base + lv_y_pred_askhigh_base,
-    #      'y_pred_asklow': lv_y_pred_asklow_1 + lv_y_pred_asklow_base + lv_y_pred_asklow_base
-    #      })
 
-    # pricedata_stadistics_proyeccion.loc[lv_index_1 + lv_index_base + lv_index_base + lv_index_base] = pandas.Series(
-    #     {'rowid': lv_rowid_1 + lv_rowid_base + lv_rowid_base + lv_rowid_base,
-    #      'y_pred_askhigh': lv_y_pred_askhigh_1 + lv_y_pred_askhigh_base + lv_y_pred_askhigh_base + lv_y_pred_askhigh_base,
-    #      'y_pred_asklow': lv_y_pred_asklow_1 + lv_y_pred_asklow_base + lv_y_pred_asklow_base + lv_y_pred_asklow_base
-    #      })
-
-
-    print(pricedata_stadistics_proyeccion)
     # Calculamos La tendencia con los valores de de la proyection las velas mas altas y mas bajas.
     lv_Tendency = "Lateral"
-    if pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_askhigh'] < \
-            pricedata_stadistics_sup.iloc[1]['y_pred_askhigh'] and \
-            pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_asklow'] < \
-            pricedata_stadistics_sup.iloc[1]['y_pred_asklow']:
+    if pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidhigh'] < \
+            pricedata_stadistics_sup.iloc[1]['y_pred_bidhigh'] and \
+            pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidlow'] < \
+            pricedata_stadistics_sup.iloc[1]['y_pred_bidlow']:
         lv_Tendency = "Bajista"
-    elif pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_askhigh'] > \
-            pricedata_stadistics_sup.iloc[1]['y_pred_askhigh'] and \
-            pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_asklow'] > \
-            pricedata_stadistics_sup.iloc[1]['y_pred_asklow']:
+    elif pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidhigh'] > \
+            pricedata_stadistics_sup.iloc[1]['y_pred_bidhigh'] and \
+            pricedata_stadistics_sup.iloc[len(pricedata_stadistics_sup) - 1]['y_pred_bidlow'] > \
+            pricedata_stadistics_sup.iloc[1]['y_pred_bidlow']:
         lv_Tendency = "Alcista"
 
     print("Tendencia Regresion Lineal: " + lv_Tendency)
 
+    lv_posicion_venta = False
+    lv_posicion_compra = False
+
     if lv_Tendency == "Bajista" and pricedata_stadistics_proyeccion.iloc[len(pricedata_stadistics_proyeccion) - 1][
-        'y_pred_askhigh'] < pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['emaFast']:
+        'y_pred_bidhigh'] < pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['bidclose']:
         lv_posicion_venta = True
         lv_posicion_compra = False
     elif lv_Tendency == "Alcista" and pricedata_stadistics_proyeccion.iloc[len(pricedata_stadistics_proyeccion) - 1][
-        'y_pred_asklow'] > pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['emaFast']:
+        'y_pred_bidlow'] > pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['bidclose']:
         lv_posicion_venta = False
         lv_posicion_compra = True
-
-    lv_accion = 'NA'
-    if lv_Tendency == "Bajista" and lv_posicion_venta == True and \
-            pricedata_stadistics_proyeccion.iloc[len(pricedata_stadistics_proyeccion) - 1]['y_pred_askhigh'] > \
-            pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['emaFast']:
-        lv_accion = 'Venta'
-    elif lv_Tendency == "Alcista" and lv_posicion_compra == True and \
-            pricedata_stadistics_proyeccion.iloc[len(pricedata_stadistics_proyeccion) - 1]['y_pred_asklow'] < \
-            pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['emaFast']:
-        lv_accion = 'Compra'
-
     print("Posicion de Venta: " + str(lv_posicion_venta) + " Posicion de Compra: " + str(lv_posicion_compra))
-    print("Operacion: " + lv_accion)
 
-    if lv_accion == 'Compra':
-        lv_posicion_venta = False
-        lv_posicion_compra = False
-        print("	 SEÑAL DE COMPRA ! \n")
+    # Print Price/Indicators
+    print("Close Price: " + str(pricedata['bidclose'][len(pricedata) - 1]))
+    #print("Fast SMA: " + str(iFastSMA[len(iFastSMA) - 1]))
+    #print("Slow SMA: " + str(iSlowSMA[len(iSlowSMA) - 1]))
+
+    # TRADING LOGIC
+    if crossesOver(iFastSMA, iSlowSMA) and lv_posicion_compra :
+        print("	  BUY SIGNAL!")
         if countOpenTrades("S") > 0:
-            print("	  Cerrando Ventas Abiertas...\n")
+            print("	  Closing Sell Trade(s)...")
             exit("S")
         if countOpenTrades("B") == 0:
+            print("	  Opening Buy Trade...")
             enter("B")
-        print("	  Abrir Operacion de Compra...\n")
 
-    if lv_accion == 'Venta':
-        lv_posicion_venta = False
-        lv_posicion_compra = False
-        print("	  SEÑAL DE VENTA ! \n")
+    if crossesUnder(iFastSMA, iSlowSMA) and lv_posicion_venta:
+        print("	  SELL SIGNAL!")
         if countOpenTrades("B") > 0:
-            print("	  Cerrando Operacion de Compras...\n")
+            print("	  Closing Buy Trade(s)...")
             exit("B")
         if countOpenTrades("S") == 0:
+            print("	  Opening Sell Trade...")
             enter("S")
-        print("	  Abrir Operacion de Venta...\n")
-    gc.collect()
-    print(str(dt.datetime.now()) + " " + timeframe + "\n")
+    print(str(dt.datetime.now()) + " " + timeframe + " Update Function Completed.\n")
+    print("\n")
+
+
+def crossesOver(stream1, stream2):
+    if isinstance(stream2, int) or isinstance(stream2, float):
+        if stream1[len(stream1) - 1] <= stream2:
+            return False
+        else:
+            if stream1[len(stream1) - 2] > stream2:
+                return False
+            elif stream1[len(stream1) - 2] < stream2:
+                return True
+            else:
+                x = 2
+                while stream1[len(stream1) - x] == stream2:
+                    x = x + 1
+                if stream1[len(stream1) - x] < stream2:
+                    return True
+                else:
+                    return False
+    else:
+        if stream1[len(stream1) - 1] <= stream2[len(stream2) - 1]:
+            return False
+        else:
+            if stream1[len(stream1) - 2] > stream2[len(stream2) - 2]:
+                return False
+            elif stream1[len(stream1) - 2] < stream2[len(stream2) - 2]:
+                return True
+            else:
+                x = 2
+                while stream1[len(stream1) - x] == stream2[len(stream2) - x]:
+                    x = x + 1
+                if stream1[len(stream1) - x] < stream2[len(stream2) - x]:
+                    return True
+                else:
+                    return False
+
+
+# Returns true if stream1 crossed under stream2 in most recent candle, stream2 can be integer/float or data array
+
+def crossesUnder(stream1, stream2):
+    if isinstance(stream2, int) or isinstance(stream2, float):
+        if stream1[len(stream1) - 1] >= stream2:
+            return False
+        else:
+            if stream1[len(stream1) - 2] < stream2:
+                return False
+            elif stream1[len(stream1) - 2] > stream2:
+                return True
+            else:
+                x = 2
+                while stream1[len(stream1) - x] == stream2:
+                    x = x + 1
+                if stream1[len(stream1) - x] > stream2:
+                    return True
+                else:
+                    return False
+    else:
+        if stream1[len(stream1) - 1] >= stream2[len(stream2) - 1]:
+            return False
+        else:
+            if stream1[len(stream1) - 2] < stream2[len(stream2) - 2]:
+                return False
+            elif stream1[len(stream1) - 2] > stream2[len(stream2) - 2]:
+                return True
+            else:
+                x = 2
+                while stream1[len(stream1) - x] == stream2[len(stream2) - x]:
+                    x = x + 1
+                if stream1[len(stream1) - x] > stream2[len(stream2) - x]:
+                    return True
+                else:
+                    return False
 
 
 def enter(BuySell):
-    direction = True
+    direction = True;
     if BuySell == "S":
-        direction = False
+        direction = False;
     try:
-        # opentrade = con.open_trade(symbol=symbol, is_buy=direction,amount=amount, time_in_force='GTC',order_type='AtMarket',is_in_pips=True,limit=limit, stop=stop, trailing_step=1)
-        opentrade = con.open_trade(symbol=symbol,
-                                   is_buy=direction,
-                                   amount=amount,
-                                   time_in_force='GTC',
-                                   order_type='AtMarket',
-                                   is_in_pips=True,
-                                   limit=limit,
-                                   stop=stop, trailing_step=trailing_step)
-
+        opentrade = con.open_trade(symbol=symbol, is_buy=direction, amount=amount, time_in_force='GTC',
+                                   order_type='AtMarket', is_in_pips=True, limit=limit, stop=stop)
     except:
-        print("	  Error Abriendo la Operacion.")
+        print("	  Error Opening Trade.")
     else:
-        print("	  Operacion Abierta Exitosamente.")
-    time.sleep(3)
+        print("	  Trade Opened Successfully.")
 
 
 def exit(BuySell=None):
@@ -443,14 +407,13 @@ def exit(BuySell=None):
     for position in openpositions:
         if position['currency'] == symbol:
             if BuySell is None or position['isBuy'] == isbuy:
-                print("	  Cerrando Operacion: " + position['tradeId'])
+                print("	  Closing tradeID: " + position['tradeId'])
                 try:
                     closetrade = con.close_trade(trade_id=position['tradeId'], amount=position['amountK'])
                 except:
-                    print("	  Error cerrando la operacion.")
+                    print("	  Error Closing Trade.")
                 else:
-                    print("	  Operacion Cerrada Satisfactoriamente.")
-    time.sleep(3)
+                    print("	  Trade Closed Successfully.")
 
 
 def countOpenTrades(BuySell=None):
@@ -467,5 +430,5 @@ def countOpenTrades(BuySell=None):
 
 
 if __name__ == '__main__':
-    Prepare()  # Perar la Estrategia
-    StrategyStart()  # Iniciar la Estrategia
+    Prepare()  # Initialize strategy
+    StrategyHeartBeat()  # Run strategy
