@@ -36,7 +36,7 @@ numberofcandles = 300
 numberofcandles_sup = 6
 numberofregresion_sup = 6
 
-con = fxcmpy.fxcmpy(config_file='../fxcm.cfg')
+con = fxcmpy.fxcmpy(config_file='../../fxcm.cfg')
 
 pricedata_stadistics = pd.DataFrame([],
                                     columns=['rowid',
