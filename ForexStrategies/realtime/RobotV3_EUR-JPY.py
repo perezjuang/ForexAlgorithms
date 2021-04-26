@@ -512,21 +512,21 @@ def Update():
     #
     # # TRADING LOGIC
     #
-    if crossesOver(iFastSMA, iSlowSMA):
+    if crossesOver(iFastSMA, iSlowSMA)  and lv_posicion_compra and angle >= 25:
         print("	  BUY SIGNAL!")
         if countOpenTrades("S") > 0:
             print("	  Closing Sell Trade(s)...")
             exit("S")
-        if countOpenTrades("B") == 0 and lv_posicion_compra and angle >= 20:
+        if countOpenTrades("B") == 0:
             print("	  Opening Buy Trade...")
             enter("B")
 
-    if crossesUnder(iFastSMA, iSlowSMA):
+    if crossesUnder(iFastSMA, iSlowSMA) and lv_posicion_venta and angle <= -25:
         print("	  SELL SIGNAL!")
         if countOpenTrades("B") > 0:
             print("	  Closing Buy Trade(s)...")
             exit("B")
-        if countOpenTrades("S") == 0 and lv_posicion_venta and angle <= -20:
+        if countOpenTrades("S") == 0 :
             print("	  Opening Sell Trade...")
             enter("S")
 
