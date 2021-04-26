@@ -25,9 +25,9 @@ fast_sma_periods = 10
 slow_sma_periods = 30
 too_slow_sma_periods = 100
 
-amount = 10
-stop = -10
-limit = 30
+amount = 5
+stop = -5
+limit = 15
 
 # Global Variables
 pricedata = None
@@ -290,9 +290,9 @@ def Update():
     y = y2 - y1
 
     angle = math.atan2(y, x) * (180.0 / math.pi)
-    angle2 = np.rad2deg(np.arctan2(vy[-1] - vy[0], vx[-1] - vx[0]))
+    #angle2 = np.rad2deg(np.arctan2(vy[-1] - vy[0], vx[-1] - vx[0]))
 
-    print("Angulo: " + str(angle) + "   angulo2 " + str(angle2))
+    print("Angulo: " + str(angle) )
     #
     # pricedata_stadistics['y_bidhigh'] = pricedata['bidhigh'].values
     # pricedata_stadistics['y_bidlow'] = pricedata['bidlow'].values
@@ -511,23 +511,26 @@ def Update():
     # # print("Slow SMA: " + str(iSlowSMA[len(iSlowSMA) - 1]))
     #
     # # TRADING LOGIC
-    if crossesOver(iFastSMA, iSlowSMA) and lv_posicion_compra:
+    #
+    if crossesOver(iFastSMA, iSlowSMA):
         print("	  BUY SIGNAL!")
         if countOpenTrades("S") > 0:
             print("	  Closing Sell Trade(s)...")
             exit("S")
-        if countOpenTrades("B") == 0:
+        if countOpenTrades("B") == 0 and lv_posicion_compra and angle >= 20:
             print("	  Opening Buy Trade...")
             enter("B")
 
-    if crossesUnder(iFastSMA, iSlowSMA) and lv_posicion_venta:
+    if crossesUnder(iFastSMA, iSlowSMA):
         print("	  SELL SIGNAL!")
         if countOpenTrades("B") > 0:
             print("	  Closing Buy Trade(s)...")
             exit("B")
-        if countOpenTrades("S") == 0:
+        if countOpenTrades("S") == 0 and lv_posicion_venta and angle <= -20:
             print("	  Opening Sell Trade...")
             enter("S")
+
+
     print(str(dt.datetime.now()) + " " + timeframe + " Update Function Completed.\n")
     print("\n")
 
