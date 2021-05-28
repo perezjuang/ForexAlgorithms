@@ -1,0 +1,25 @@
+  Copyright (c) 2006 FXCM, LLC.
+  11 Broadway Suite 1300, New York NY, 10004 USA
+
+  THIS SOFTWARE IS THE CONFIDENTIAL AND PROPRIETARY INFORMATION OF
+  FXCM, LLC. ("CONFIDENTIAL INFORMATION"). YOU SHALL NOT DISCLOSE
+  SUCH CONFIDENTIAL INFORMATION AND SHALL USE IT ONLY IN ACCORDANCE
+  WITH THE TERMS OF THE LICENSE AGREEMENT YOU ENTERED INTO WITH
+  FXCM.
+
+03/30/2009 ... 05/07/2009   AP:
+    com/fxcm/internal/transport/FXCMGateway: added support of external price server
+
+12/19/2006  Andre Mermegas:
+    com/fxcm/external/api/transport/IGateway: added direct support for getting assets by acctid
+    com/fxcm/internal/transport/FXCMGateway: added direct support for getting assets by acctid
+
+12/04/2006  Andre Mermegas:
+    com/fxcm/external/api/transport/IGateway: added new method to support properties in opensession, PIN support
+    com/fxcm/internal/transport/FXCMGateway: added new method to support properties in opensession, PIN support
+
+04/08/2009  Andre Mermegas:
+  com/fxcm/internal/transport/FXCMGateway: add Account to requestOrderStatus(...) signature
+  com/fxcm/external/api/transport/IGateway: add Account to requestOrderStatus(...) signature
+  com/fxcm/external/api/util/MessageGenerator: remove unneccessary FXCMAcctID from signatures, add Account to
+                                               generateOrderCancelRequest(...), generateOrderReplaceRequest(...)

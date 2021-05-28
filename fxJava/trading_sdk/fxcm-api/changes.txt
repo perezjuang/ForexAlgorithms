@@ -1,0 +1,171 @@
+########################
+#FXCM API Changes#
+########################
+
+03/30/2009 ... 05/07/2009   AP:
+    - Added support of external price server
+
+08/31/2007  Andre Mermegas
+    - Execution Report: New fields OrdRejReason, LastQty (qty filled in current exe rpt), CumQty(total qty filled), ListID(Group ID in case of OrderList)
+    - Apache HTTP transport: updates for timeout
+    - EMail: add from field, handle empty subject
+    - Logout: new message, received in case of trading session expiration
+    - OrderList: new message, support batch of OrderSingle
+    - UserRequest: support checking of current trading session status
+
+01/18/2007  Andre Mermegas
+    -   PIN support for clients who require.
+    -   changes to some order status flow values
+        FXCMOrdStatus	        FIX OrdStatus	    Change
+        -------------           -------------       -------------------------------------
+        Executing(E)	        Calculated(B)       Changed value, used to be Stopped (7)
+        Pending Calculated(U)	Stopped(7)          newly added
+        Pending Cancel(S)	    Pending Cancel(6)   newly added
+    -   Added support open/close range orders (ala at market), example tests are in QATest
+    -   Old FXCM logging has been refactored to use to commons-logging
+    -   Support for apache commons httpclient as communication mechanism, configurable via property
+        default remains using sun standard HttpURLConnection
+        com.fxcm.messaging.IConnectionManager.HttpImplementation=apache
+        com.fxcm.messaging.IConnectionManager.HttpImplementation=standard
+        note: we do not distribute apache commons httpclient at this time as its optional, we have built on 3.0.1 stable
+        http://jakarta.apache.org/commons/httpclient/downloads.html
+    -   Minor restructuring of the distribution package and versioning
+    -   Other bugfixes, performance updates
+
+06/07/2006  Andre Mermegas
+    com/fxcm/external/api/util/MessageGenerator: added generateCloseMarketOrder, update to javadocs
+     QATest: refactoring, added testCloseTrueMarketOrder
+
+05/09/2006  Andre Mermegas
+    com/fxcm/internal/transport/FXCMGateway: added support for MarketDataRequest
+
+05/03/2006  Andre Mermegas
+    -   On some systems contract size has changed $1, in the future all systems will be updated to this.
+        Old Contract Size(100,000 or 10,000) is now stored in TradingSessionStatus Parameter "FRACTION_SIZE"
+        e.g. aTradingSessionStatus.getParameter("FRACTION_SIZE")
+    -   Added support for at market, trailing stop orders, see MessageGenerator for new signatures
+    -   Added support for SecurityStatusRequest, SecurityListRequest,
+        see qaTest.testSecurityListRequest(), qaTest.testSecurityStatusRequest(), FXCM-FIX-BSI.doc for details
+
+03/02/2006  Andre Mermegas
+    -   Added ability to register listeners to receive fxcm log messages and dispatch anyway user would like.
+        @see com.fxcm.logger.ILogListener, com.fxcm.logger.Logger.public static void registerListener(ILogListener aListener);
+    -   Added ability to get entry pip distance for entry orders, this is the number of pips away from market price needed to place a conditional order.
+        it is available in your TradingSessionStatus as a parameter, mTradingSessionStatus.getParameter("COND_DIST_ENTRY");
+        Currently only availabe to you when it is updated after connection is established (A new TradingSessionStatus, will be pushed to your listener).
+        Waiting on a server side change to be available on all TradingSessionStatus requests.
+
+12/02/2005  Andre Mermegas
+    com/fxcm/external/api/util/MessageGenerator: removed price, quoteid from signature of generateMarketOrder
+    QATest: updated test for true market order, minor cleanup
+
+11/10/2005  Andre Mermegas
+    com/fxcm/external/api/transport/IGateway: added request closed positions for historical snapshots and request order status
+    com/fxcm/external/api/util/OrdStatusRequestType: new class
+    com/fxcm/internal/transport/FXCMGateway: added request closed positions for historical snapshots and request order status
+    QATest: added test for Historical Snapshot Closed Position Reports, Order Status Request
+
+08/12/2005 Miron
+  IGateway
+    - overwitten request*() with aLoginId argument
+  FXCMGateway
+    -  added request*() with aLoginId
+  QATest
+    - all inital request are based on login id (so not direct dealer connection supported, make loginid = null if you need that)
+
+
+08/01/2005 Miron
+  FXCMGateway
+    - sendMessage() takes care about TradingSessionID/SubID to fill
+  QATest
+    - only !isDeleted() order is to delete or modify
+    - fill all requred fields for OrderReplace/Cancel
+07/23/2005 Miron
+ MessageGenerator
+   - FXCMOrdType removed from OrderSingle
+ QATest
+   - MessageAnalyzer removed, follow up changes
+06/20/2005 Miron
+FXCMGateway
+  - sendMessage() redone
+  - requestTradingSessionStatus() redone
+
+06/13/2005 miron
+FXCMLoginProperties
+   symplified with usage of properties file
+FXCMGateway
+  - symplified to follow up FXCMLoginProperties changes
+QATest
+  - rewritten to followup coding rules
+  - follow up to FXCMLoginProperties changes
+ClientTester
+  - rewritten to followup coding rules
+  - follow up to FXCMLoginProperties changes
+
+
+06/04/2005 miron
+FXCMGateway
+  - OrderMassStatusRequest moved to trade package
+
+06/03/2005  intermediate
+IGateway supports sendObject()
+ClientTester sendObject(), follow up to interface changes
+FXCMGateway supports sendObject(), some objects moved to different package
+QATest sendObject(), follow up to interface changes
+
+05/31/2005  build 22 - release
+- added new doc FXCMTradingAPI.doc,FXCMfix.doc
+- FXCMRequestReject replaced with BusinessMessageReject
+- added IGateway.getSessionID() to retrieve current session id
+- added IGateway.requestTradingSessionStatus() which is a mandatory call before messages will be received by client
+- Quote is now replaced by MarketDataSnapshot
+- added peg order capability: at market points for closing/opening a position and trailing stop to stop on entry order or position
+- added RequestForPositionsAck message which will precede all batch position responses
+- removed report collection types: ExecutionReportList, PositionReportList, ClosedPositionReportList, CollateralReportList
+  This functionality is now implemented grouping reports requests together based on massStatusReqID and sending out each Report individually.
+- changed signature of bulk report method calls in IGateway to return massStatusReqID
+    requestAccounts(),requestClosedPositions(), requestOpenOrders() and requestOpenPositions(),requestTradingSessionStatus()
+- added massStatusReqID,sequenceID,totNumReports,lastRptRequested properties to ExecutionReport,CollateralReport,PositionReport,ClosedPositionReport
+    massStatusReqID is the bulk batch id for a group of reports
+    sequenceID is the order in the batch which the report was sent out
+    totNumReports is the total number of report in the batch
+    lastRptRequested indicates that the report is the last in the batch "Y"
+- In order to receive messages, you must request trading session status from the IGateway
+- ExecutionReport getOrderStatus, setOrderStatus deprecated, use getOrdStatus,setOrdStatus
+- PositionReport  getClOrderID,setClOrderID,getSecondaryClOrderID,setSecondaryClOrderID deprecated
+    use getClOrdID,setClOrdID,getSecondaryClOrdID,setSecondaryClOrdID
+
+04/04/2005  build 16 - release
+- changes signature of all MessageGenerator methods, no longer accepts clOrdID param
+- fixes to clOrdID,secondaryClOrdID handling
+
+03/17/2005  build 15 - beta
+- consolidated methods from OrderAnalyzer into MessageAnalyzer and moved it to the com.fxcm.external.api.util pkg
+- added isConnected method to IGateway
+
+03/10/2005 build 14 - beta
+-   property name changes to standard FXCM all caps for FXCM custom fields on CollateralReport, ClosedPositionReport
+-   added ClosedPositionReportList, container for ClosedPositionReport which comes in as a result of requestClosedPositions in IGateway
+
+03/02/2005  build 10 - beta
+- completely new model FIX based, tons of updates and new features.
+- see QATest and ClientTester
+
+01/03/2005 - build 3 - alpha
+-  added methods to remove listeners
+-  added javadocs for fxmsg.jar
+
+01/03/2005 - build 2 - alpha
+-  rebuilt under 1.4.x jvm for compatability issues.
+
+12/23/2004 - build 1  - alpha
+- changed IGateway interface to have asynchronous behaviour for getting open positions,
+orders and accounts. Instead of "getting" these items, you now make a "request" to
+the server and wait for a response in your listener and process it as you see fit.
+- requestAccounts will generate an AccountList object which has a method on it to get an
+array of Account objects associated with your account.
+- requestOpenPositions will generatea a PositionList object which has a method on it to get an
+array of ExecutionReports which represent the open positions on your account.
+- requestOpenOrders will generate an OrderList object which has a method on it to get an array of
+OrderSingles which represent the open orders you have on your account.
+- see ClientTester.java example class for more details.

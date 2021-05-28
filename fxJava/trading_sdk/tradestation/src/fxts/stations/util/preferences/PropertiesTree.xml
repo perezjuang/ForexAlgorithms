@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<PropertiesTree>
+    <Node name="IDS_SERVER" description="Server">
+        <Node name="IDS_TRADE_SERVER" description="Trade Server">
+            <Property id="Server.cfg" name="IDS_SERVER_CFG_FILE" description="Config File" type="string" />
+        </Node>
+        <Node name="IDS_PROXY_SERVER" description="Proxy Server">
+            <Property id="Proxy.use" name="IDS_PROXY_USE" description="Use proxy" type="boolean" />
+            <Property id="Proxy.host" name="IDS_PROXY_HOST" description="Host" type="string" />
+            <Property id="Proxy.port" name="IDS_PROXY_PORT" description="Port" type="int" />
+            <Property id="Proxy.user" name="IDS_PROXY_USER" type="string" />
+            <Property id="Proxy.password" name="IDS_PROXY_PASSWORD" type="password" />
+        </Node>
+    </Node>
+    <Node name="IDS_WINDOWS" description="Properties of child Frames">
+        <Node name="Snap Mouse" description="Snap Mouse">
+            <Property id="Mouse.snapDefaultButton" name="IDS_SNAPMOUSE" description="Snap Mouse to default button" type="boolean" />
+        </Node>
+        <Node name="Anti-aliasing" description="Anti-aliasing">
+            <Property id="Anti-aliasing" name="IDS_ANTIALIAS" description="Enable Anti-aliasing" type="boolean" />
+        </Node>
+        <Node name="IDS_DEALING_RATES" description="Dealing Rates">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="Rate.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="Rate.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="Rate.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="Rate.foreground.nontradable" name="IDS_FOREGROUND_NONTRADABLE" type="color" />
+                <Property id="AdvancedRate.foreground.raised" name="IDS_ADVANCED_FOREGROUND_RAISED" type="color" />
+                <Property id="AdvancedRate.foreground.down" name="IDS_ADVANCED_FOREGROUND_DOWN" type="color" />
+                <Property id="AdvancedRate.primaryColor" name="IDS_ADVANCED_PRIMARYCOLOR" type="color" />
+                <Property id="AdvancedRate.highPriceFG" name="IDS_ADVANCED_HIGHPRICE_FG" type="color" />
+                <Property id="AdvancedRate.lowPriceFG" name="IDS_ADVANCED_LOWPRICE_FG" type="color" />
+                <Property id="AdvancedRate.buyFG" name="IDS_ADVANCED_BUY_FG" type="color" />
+                <Property id="AdvancedRate.sellFG" name="IDS_ADVANCED_SELL_FG" type="color" />
+                <Property id="AdvancedRate.currencyFG" name="IDS_ADVANCED_CCYFG" type="color" />
+                <Property id="AdvancedRate.ccy1" name="IDS_ADVANCED_CCY1" type="color" />
+                <Property id="AdvancedRate.ccy2" name="IDS_ADVANCED_CCY2" type="color" />
+                <Property id="AdvancedRate.hl1" name="IDS_ADVANCED_HL1" type="color" />
+                <Property id="AdvancedRate.hl2" name="IDS_ADVANCED_HL2" type="color" />
+                <Property id="AdvancedRate.label1" name="IDS_ADVANCED_LABEL1" type="color" />
+                <Property id="AdvancedRate.label2" name="IDS_ADVANCED_LABEL2" type="color" />
+                <Property id="AdvancedRate.rateDateFG" name="IDS_ADVANCED_RATEDATEFG" type="color" />
+                <Property id="AdvancedRate.rateDate1" name="IDS_ADVANCED_RATE_DATE1" type="color" />
+                <Property id="AdvancedRate.rateDate2" name="IDS_ADVANCED_RATE_DATE2" type="color" />
+                <Property id="AdvancedRate.selectedCcy1" name="IDS_ADVANCED_SELECTED_CCY1" type="color" />
+                <Property id="AdvancedRate.selectedCcy2" name="IDS_ADVANCED_SELECTED_CCY2" type="color" />
+                <Property id="Rate.foreground.raised" name="IDS_FOREGROUND_RAISED" type="color" />
+                <Property id="Rate.foreground.down" name="IDS_FOREGROUND_DOWN" type="color" />
+                <Property id="Rate.background.raised" name="IDS_BACKGROUND_RAISED" type="color" />
+                <Property id="Rate.background.down" name="IDS_BACKGROUND_DOWN" type="color" />
+                <Property id="Rate.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="Rate.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="Rate.foreground.raised.selected" name="IDS_FOREGROUND_RAISED_SELECTED" type="color" />
+                <Property id="Rate.background.raised.selected" name="IDS_BACKGROUND_RAISED_SELECTED" type="color" />
+                <Property id="Rate.foreground.down.selected" name="IDS_FOREGROUND_DOWN_SELECTED" type="color" />
+                <Property id="Rate.background.down.selected" name="IDS_BACKGROUND_DOWN_SELECTED" type="color" />
+                <Property id="Rate.foreground.nontradable.selected" name="IDS_FOREGROUND_NONTRADABLE_SELECTED" type="color" />
+                <Property id="Rate.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="Rate.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="Rate.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="Rate.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="Rate.font.raised.selected" name="IDS_FONT_RAISED_SELECTED" type="font" />
+                <Property id="Rate.font.down.selected" name="IDS_FONT_DOWN_SELECTED" type="font" />
+                <Property id="Rate.font.raised" name="IDS_FONT_RAISED" type="font" />
+                <Property id="Rate.font.down" name="IDS_FONT_DOWN" type="font" />
+                <Property id="Rate.font.nontradable" name="IDS_FONT_NONTRADABLE" type="font" />
+                <Property id="Rate.font.nontradable.selected" name="IDS_FONT_NONTRADABLE_SELECTED" type="font" />
+                <Property id="Rate.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_OPEN_POSITIONS" description="Open Positions">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="OpenPositions.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="OpenPositions.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="OpenPositions.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="OpenPositions.foreground.closed" name="IDS_FOREGROUND_CLOSED" type="color" />
+                <Property id="OpenPositions.background.closed" name="IDS_BACKGROUND_CLOSED" type="color" />
+                <Property id="OpenPositions.foreground.nontradable" name="IDS_FOREGROUND_NONTRADABLE" type="color" />
+                <Property id="OpenPositions.foreground.undermargincall" name="IDS_FOREGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="OpenPositions.background.undermargincall" name="IDS_BACKGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="OpenPositions.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="OpenPositions.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="OpenPositions.foreground.nontradable.selected" name="IDS_FOREGROUND_NONTRADABLE_SELECTED" type="color" />
+                <Property id="OpenPositions.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="OpenPositions.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="OpenPositions.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="OpenPositions.font.closed" name="IDS_FONT_CLOSED" type="font" />
+                <Property id="OpenPositions.font.nontradable" name="IDS_FONT_NONTRADABLE" type="font" />
+                <Property id="OpenPositions.font.undermargincall" name="IDS_FONT_UNDER_MARGIN_CALL" type="font" />
+                <Property id="OpenPositions.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="OpenPositions.font.nontradable.selected" name="IDS_FONT_NONTRADABLE_SELECTED" type="font" />
+                <Property id="OpenPositions.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_CLOSED_POSITIONS" description="Closed Positions">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="ClosedPositions.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="ClosedPositions.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="ClosedPositions.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="ClosedPositions.foreground.closed" name="IDS_FOREGROUND_CLOSED" type="color" />
+                <Property id="ClosedPositions.background.closed" name="IDS_BACKGROUND_CLOSED" type="color" />
+                <Property id="ClosedPositions.foreground.nontradable" name="IDS_FOREGROUND_NONTRADABLE" type="color" />
+                <Property id="ClosedPositions.foreground.undermargincall" name="IDS_FOREGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="ClosedPositions.background.undermargincall" name="IDS_BACKGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="ClosedPositions.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="ClosedPositions.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="ClosedPositions.foreground.nontradable.selected" name="IDS_FOREGROUND_NONTRADABLE_SELECTED" type="color" />
+                <Property id="ClosedPositions.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="ClosedPositions.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="ClosedPositions.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="ClosedPositions.font.closed" name="IDS_FONT_CLOSED" type="font" />
+                <Property id="ClosedPositions.font.nontradable" name="IDS_FONT_NONTRADABLE" type="font" />
+                <Property id="ClosedPositions.font.undermargincall" name="IDS_FONT_UNDER_MARGIN_CALL" type="font" />
+                <Property id="ClosedPositions.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="ClosedPositions.font.nontradable.selected" name="IDS_FONT_NONTRADABLE_SELECTED" type="font" />
+                <Property id="ClosedPositions.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_ORDERS" description="Orders">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="Orders.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="Orders.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="Orders.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="Orders.foreground.nontradable" name="IDS_FOREGROUND_NONTRADABLE" type="color" />
+                <Property id="Orders.foreground.undermargincall" name="IDS_FOREGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="Orders.background.undermargincall" name="IDS_BACKGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="Orders.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="Orders.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="Orders.foreground.nontradable.selected" name="IDS_FOREGROUND_NONTRADABLE_SELECTED" type="color" />
+                <Property id="Orders.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="Orders.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="Orders.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="Orders.font.nontradable" name="IDS_FONT_NONTRADABLE" type="font" />
+                <Property id="Orders.font.undermargincall" name="IDS_FONT_UNDER_MARGIN_CALL" type="font" />
+                <Property id="Orders.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="Orders.font.nontradable.selected" name="IDS_FONT_NONTRADABLE_SELECTED" type="font" />
+                <Property id="Orders.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_ACCOUNTS" description="Accounts">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="Accounts.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="Accounts.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="Accounts.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="Accounts.foreground.undermargincall" name="IDS_FOREGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="Accounts.background.undermargincall" name="IDS_BACKGROUND_UNDER_MARGIN_CALL" type="color" />
+                <Property id="Accounts.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="Accounts.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="Accounts.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="Accounts.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="Accounts.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="Accounts.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="Accounts.font.undermargincall" name="IDS_FONT_UNDER_MARGIN_CALL" type="font" />
+                <Property id="Accounts.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_SUMMARY" description="Summary">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="Summary.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="Summary.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="Summary.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="Summary.foreground.total" name="IDS_FOREGROUND_TOTAL" type="color" />
+                <Property id="Summary.background.total" name="IDS_BACKGROUND_TOTAL" type="color" />
+                <Property id="Summary.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="Summary.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="Summary.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="Summary.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="Summary.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="Summary.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="Summary.font.total" name="IDS_FONT_TOTAL" type="font" />
+                <Property id="Summary.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+        <Node name="IDS_MESSAGES" description="Messages">
+            <Node name="IDS_COLOR_PROPERTY_NAME" description="Colors">
+                <Property id="Messages.foreground.default" name="IDS_FOREGROUND" type="color" />
+                <Property id="Messages.background.default.even" name="IDS_BACKGROUND_OF_ODD_ROW" type="color" />
+                <Property id="Messages.background.default.odd" name="IDS_BACKGROUND_OF_EVEN_ROW" type="color" />
+                <Property id="Messages.background.selected" name="IDS_BACKGROUND_SELECTED" type="color" />
+                <Property id="Messages.foreground.selected" name="IDS_FOREGROUND_SELECTED" type="color" />
+                <Property id="Messages.background.header" name="IDS_BACKGROUND_HEADER" type="color" />
+                <Property id="Messages.foreground.header" name="IDS_FOREGROUND_HEADER" type="color" />
+            </Node>
+            <Node name="IDS_FONT_PROPERTY_NAME" description="Fonts">
+                <Property id="Messages.font.content" name="IDS_FONT_CONTENT" type="font" />
+                <Property id="Messages.font.selected" name="IDS_FONT_SELECTED" type="font" />
+                <Property id="Messages.font.header" name="IDS_FONT_HEADER" type="font" />
+            </Node>
+        </Node>
+    </Node>
+</PropertiesTree>

@@ -13,8 +13,7 @@ import json
 from importlib import reload
 import fxcm_rest_api_token as fxcm_rest_api
 result = reload(fxcm_rest_api)
-
-trader = fxcm_rest_api.Trader('9bee17e6ea2e6aab3f00517acb3a48c4cf62be34', 'demo')
+trader = fxcm_rest_api.Trader('25e7bb74fafe7aab29efd848d4d1f8b4e79bc483', 'demo')
 trader.debug_level = "INFO" # verbose logging... don't set to receive errors only
 trader.login()
 

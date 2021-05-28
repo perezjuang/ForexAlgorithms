@@ -1,0 +1,993 @@
+|INFO|2021-05-14 08:38:15,732|Connecting FXCM Server
+|DEBUG|2021-05-14 08:38:15,732|Access token: d1a05f623d2a396ec7f7ce33ee90721f0acdf456.
+|DEBUG|2021-05-14 08:38:15,732|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:16,202|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999495.732311 HTTP/1.1" 200 None
+|INFO|2021-05-14 08:38:31,319|Socket established: <socketio.client.Client object at 0x000001644B30EFD0>.
+|DEBUG|2021-05-14 08:38:31,319|Starting new HTTPS connection (2): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:31,475|https://api-demo.fxcm.com:443 "POST /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&sid=hyMRN9ZY_JZ973ovC77g HTTP/1.1" 200 2
+|DEBUG|2021-05-14 08:38:31,587|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&sid=hyMRN9ZY_JZ973ovC77g&t=1620999511.3119185 HTTP/1.1" 200 26901
+|INFO|2021-05-14 08:38:31,595|Disconnected.
+|DEBUG|2021-05-14 08:38:33,406|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999512.9550495 HTTP/1.1" 200 None
+|INFO|2021-05-14 08:38:34,339|Connection established.
+|INFO|2021-05-14 08:38:34,895|In handle_request with method trading/get_model
+|INFO|2021-05-14 08:38:34,895|Connection status: True
+|INFO|2021-05-14 08:38:34,895|2. connection status: established
+|INFO|2021-05-14 08:38:34,895|Socket state: True
+|INFO|2021-05-14 08:38:34,895|Thread state: True
+|INFO|2021-05-14 08:38:34,895|Thread name: Thread-1
+|INFO|2021-05-14 08:38:34,895|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:34,895|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:34,895|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Account']}.
+|DEBUG|2021-05-14 08:38:34,895|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:35,145|https://api-demo.fxcm.com:443 "GET /trading/get_model?models=Account HTTP/1.1" 200 313
+|INFO|2021-05-14 08:38:35,145|Sending GET Request:
+|INFO|2021-05-14 08:38:35,145|URL: https://api-demo.fxcm.com:443/trading/get_model?models=Account
+|INFO|2021-05-14 08:38:35,145|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded'}
+|INFO|2021-05-14 08:38:35,145|Params: {'models': ['Account']}
+|INFO|2021-05-14 08:38:35,145|Proxies: {}
+|DEBUG|2021-05-14 08:38:35,145|Server answer: {'response': {'executed': True}, 'accounts': [{'t': 6, 'ratePrecision': 0, 'accountId': '1514209', 'balance': 20000, 'usdMr': 0, 'mc': 'N', 'mcDate': '', 'accountName': '01514209', 'usdMr3': 0, 'hedging': 'Y', 'usableMargin3': 20000, 'usableMarginPerc': 100, 'usableMargin3Perc': 100, 'equity': 20000, 'usableMargin': 20000, 'bus': '1000', 'dayPL': 0, 'grossPL': 0}, {'t': 6, 'ratePrecision': 0, 'accountId': '', 'balance': 20000, 'usdMr': 0, 'mc': '', 'mcDate': None, 'accountName': '', 'usdMr3': 0, 'hedging': '', 'usableMargin3': 20000, 'usableMarginPerc': 100, 'usableMargin3Perc': 100, 'equity': 20000, 'usableMargin': 20000, 'bus': None, 'dayPL': 0, 'grossPL': 0, 'isTotal': True}]}.
+|WARNING|2021-05-14 08:38:35,145|Default account set to 1514209, to change use set_default_account().
+|INFO|2021-05-14 08:38:35,145|In handle_request with method trading/get_model
+|INFO|2021-05-14 08:38:35,145|Connection status: True
+|INFO|2021-05-14 08:38:35,145|2. connection status: established
+|INFO|2021-05-14 08:38:35,145|Socket state: True
+|INFO|2021-05-14 08:38:35,145|Thread state: True
+|INFO|2021-05-14 08:38:35,145|Thread name: Thread-1
+|INFO|2021-05-14 08:38:35,145|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:35,145|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:35,145|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Order']}.
+|DEBUG|2021-05-14 08:38:35,153|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:35,377|https://api-demo.fxcm.com:443 "GET /trading/get_model?models=Order HTTP/1.1" 200 42
+|INFO|2021-05-14 08:38:35,377|Sending GET Request:
+|INFO|2021-05-14 08:38:35,377|URL: https://api-demo.fxcm.com:443/trading/get_model?models=Order
+|INFO|2021-05-14 08:38:35,377|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded'}
+|INFO|2021-05-14 08:38:35,377|Params: {'models': ['Order']}
+|INFO|2021-05-14 08:38:35,377|Proxies: {}
+|DEBUG|2021-05-14 08:38:35,377|Server answer: {'response': {'executed': True}, 'orders': []}.
+|DEBUG|2021-05-14 08:38:35,377|Fetching instruments table.
+|INFO|2021-05-14 08:38:35,377|In handle_request with method trading/get_instruments
+|INFO|2021-05-14 08:38:35,377|Connection status: True
+|INFO|2021-05-14 08:38:35,377|2. connection status: established
+|INFO|2021-05-14 08:38:35,377|Socket state: True
+|INFO|2021-05-14 08:38:35,377|Thread state: True
+|INFO|2021-05-14 08:38:35,377|Thread name: Thread-1
+|INFO|2021-05-14 08:38:35,377|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:35,377|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:35,377|Sending request to https://api-demo.fxcm.com/trading/get_instruments, parameter: {}.
+|DEBUG|2021-05-14 08:38:35,385|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:35,614|https://api-demo.fxcm.com:443 "GET /trading/get_instruments HTTP/1.1" 200 1692
+|INFO|2021-05-14 08:38:35,614|Sending GET Request:
+|INFO|2021-05-14 08:38:35,614|URL: https://api-demo.fxcm.com:443/trading/get_instruments
+|INFO|2021-05-14 08:38:35,614|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded'}
+|INFO|2021-05-14 08:38:35,614|Params: {}
+|INFO|2021-05-14 08:38:35,614|Proxies: {}
+|DEBUG|2021-05-14 08:38:35,614|Server answer: {'response': {'executed': True}, 'data': {'instrument': [{'symbol': 'EUR/USD', 'visible': True, 'order': 100}, {'symbol': 'USD/JPY', 'visible': True, 'order': 950}, {'symbol': 'GBP/USD', 'visible': True, 'order': 250}, {'symbol': 'USD/CHF', 'visible': False, 'order': 1250}, {'symbol': 'EUR/CHF', 'visible': False, 'order': 1450}, {'symbol': 'AUD/USD', 'visible': True, 'order': 1350}, {'symbol': 'USD/CAD', 'visible': True, 'order': 1750}, {'symbol': 'NZD/USD', 'visible': True, 'order': 1650}, {'symbol': 'EUR/GBP', 'visible': True, 'order': 1550}, {'symbol': 'EUR/JPY', 'visible': True, 'order': 850}, {'symbol': 'GBP/JPY', 'visible': True, 'order': 1050}, {'symbol': 'CHF/JPY', 'visible': False, 'order': 1200}, {'symbol': 'GBP/CHF', 'visible': False, 'order': 1300}, {'symbol': 'EUR/AUD', 'visible': False, 'order': 1400}, {'symbol': 'EUR/CAD', 'visible': False, 'order': 1500}, {'symbol': 'AUD/CAD', 'visible': False, 'order': 1600}, {'symbol': 'AUD/JPY', 'visible': False, 'order': 1150}, {'symbol': 'CAD/JPY', 'visible': False, 'order': 1800}, {'symbol': 'NZD/JPY', 'visible': False, 'order': 1900}, {'symbol': 'GBP/CAD', 'visible': False, 'order': 2000}, {'symbol': 'GBP/NZD', 'visible': False, 'order': 2100}, {'symbol': 'GBP/AUD', 'visible': False, 'order': 1850}, {'symbol': 'AUD/NZD', 'visible': True, 'order': 2800}, {'symbol': 'USD/SEK', 'visible': False, 'order': 3000}, {'symbol': 'EUR/SEK', 'visible': False, 'order': 3200}, {'symbol': 'EUR/NOK', 'visible': False, 'order': 3600}, {'symbol': 'USD/NOK', 'visible': False, 'order': 3700}, {'symbol': 'USD/MXN', 'visible': False, 'order': 3800}, {'symbol': 'AUD/CHF', 'visible': False, 'order': 3900}, {'symbol': 'EUR/NZD', 'visible': False, 'order': 4000}, {'symbol': 'USD/ZAR', 'visible': False, 'order': 4700}, {'symbol': 'USD/HKD', 'visible': False, 'order': 5000}, {'symbol': 'ZAR/JPY', 'visible': False, 'order': 7100}, {'symbol': 'USD/TRY', 'visible': False, 'order': 8300}, {'symbol': 'EUR/TRY', 'visible': False, 'order': 8700}, {'symbol': 'NZD/CHF', 'visible': False, 'order': 8900}, {'symbol': 'CAD/CHF', 'visible': False, 'order': 9000}, {'symbol': 'NZD/CAD', 'visible': False, 'order': 9100}, {'symbol': 'TRY/JPY', 'visible': False, 'order': 9800}, {'symbol': 'USD/CNH', 'visible': False, 'order': 799}, {'symbol': 'AUS200', 'visible': False, 'order': 1001}, {'symbol': 'ESP35', 'visible': False, 'order': 1002}, {'symbol': 'FRA40', 'visible': False, 'order': 750}, {'symbol': 'GER30', 'visible': True, 'order': 650}, {'symbol': 'HKG33', 'visible': False, 'order': 1005}, {'symbol': 'JPN225', 'visible': True, 'order': 1007}, {'symbol': 'NAS100', 'visible': False, 'order': 1008}, {'symbol': 'SPX500', 'visible': True, 'order': 1010}, {'symbol': 'UK100', 'visible': False, 'order': 350}, {'symbol': 'US30', 'visible': True, 'order': 1950}, {'symbol': 'Copper', 'visible': False, 'order': 1016}, {'symbol': 'CHN50', 'visible': True, 'order': 1020}, {'symbol': 'EUSTX50', 'visible': False, 'order': 1035}, {'symbol': 'VOLX', 'visible': True, 'order': 1036}, {'symbol': 'USDOLLAR', 'visible': True, 'order': 450}, {'symbol': 'US2000', 'visible': True, 'order': 1060}, {'symbol': 'INDIA50', 'visible': True, 'order': 1062}, {'symbol': 'USOil', 'visible': True, 'order': 2001}, {'symbol': 'UKOil', 'visible': False, 'order': 2002}, {'symbol': 'SOYF', 'visible': True, 'order': 2003}, {'symbol': 'NGAS', 'visible': False, 'order': 2015}, {'symbol': 'USOilSpot', 'visible': True, 'order': 2018}, {'symbol': 'UKOilSpot', 'visible': True, 'order': 2019}, {'symbol': 'WHEATF', 'visible': True, 'order': 2020}, {'symbol': 'CORNF', 'visible': True, 'order': 2021}, {'symbol': 'Bund', 'visible': False, 'order': 3001}, {'symbol': 'XAU/USD', 'visible': True, 'order': 150}, {'symbol': 'XAG/USD', 'visible': False, 'order': 550}, {'symbol': 'EMBasket', 'visible': True, 'order': 6001}, {'symbol': 'JPYBasket', 'visible': True, 'order': 6002}, {'symbol': 'BTC/USD', 'visible': True, 'order': 8001}, {'symbol': 'BCH/USD', 'visible': True, 'order': 8002}, {'symbol': 'ETH/USD', 'visible': True, 'order': 8003}, {'symbol': 'LTC/USD', 'visible': True, 'order': 8004}, {'symbol': 'CryptoMajor', 'visible': True, 'order': 8006}, {'symbol': 'EOS/USD', 'visible': True, 'order': 8007}, {'symbol': 'XLM/USD', 'visible': True, 'order': 8011}, {'symbol': 'ESPORTS', 'visible': True, 'order': 9081}, {'symbol': 'BIOTECH', 'visible': True, 'order': 9031}, {'symbol': 'CANNABIS', 'visible': True, 'order': 9041}, {'symbol': 'FAANG', 'visible': True, 'order': 9091}, {'symbol': 'CHN.TECH', 'visible': True, 'order': 9071}, {'symbol': 'CHN.ECOMM', 'visible': True, 'order': 9061}, {'symbol': 'USEquities', 'visible': True, 'order': 9007}, {'symbol': 'AIRLINES', 'visible': True, 'order': 9011}, {'symbol': 'CASINOS', 'visible': True, 'order': 9051}, {'symbol': 'TRAVEL', 'visible': True, 'order': 9101}, {'symbol': 'US.ECOMM', 'visible': True, 'order': 9131}, {'symbol': 'US.BANKS', 'visible': True, 'order': 9121}, {'symbol': 'US.AUTO', 'visible': True, 'order': 9111}, {'symbol': 'WFH', 'visible': True, 'order': 9141}, {'symbol': 'ATMX', 'visible': True, 'order': 9021}, {'symbol': 'BA.us', 'visible': True, 'order': 80781}, {'symbol': 'BAC.us', 'visible': True, 'order': 80811}, {'symbol': 'BRKB.us', 'visible': True, 'order': 81271}, {'symbol': 'C.us', 'visible': True, 'order': 81351}, {'symbol': 'CRM.us', 'visible': True, 'order': 81691}, {'symbol': 'DIS.us', 'visible': True, 'order': 81971}, {'symbol': 'F.us', 'visible': True, 'order': 82441}, {'symbol': 'JPM.us', 'visible': True, 'order': 83611}, {'symbol': 'KO.us', 'visible': True, 'order': 83701}, {'symbol': 'MA.us', 'visible': True, 'order': 83991}, {'symbol': 'MCD.us', 'visible': True, 'order': 84051}, {'symbol': 'PFE.us', 'visible': True, 'order': 84751}, {'symbol': 'PG.us', 'visible': True, 'order': 84771}, {'symbol': 'SE.us', 'visible': True, 'order': 85511}, {'symbol': 'T.us', 'visible': True, 'order': 86111}, {'symbol': 'V.us', 'visible': True, 'order': 86601}, {'symbol': 'XOM.us', 'visible': True, 'order': 86951}, {'symbol': 'AAPL.us', 'visible': True, 'order': 80061}, {'symbol': 'AMZN.us', 'visible': True, 'order': 80541}, {'symbol': 'BIDU.us', 'visible': False, 'order': 81001}, {'symbol': 'FB.us', 'visible': True, 'order': 82451}, {'symbol': 'GOOG.us', 'visible': True, 'order': 82951}, {'symbol': 'INTC.us', 'visible': True, 'order': 83411}, {'symbol': 'MSFT.us', 'visible': True, 'order': 84281}, {'symbol': 'SBUX.us', 'visible': True, 'order': 85441}, {'symbol': '', 'visible': True, 'order': 0}, {'symbol': 'AI.fr', 'visible': True, 'order': 80361}, {'symbol': 'BNP.fr', 'visible': True, 'order': 81151}, {'symbol': 'AIR.fr', 'visible': True, 'order': 80391}, {'symbol': 'FP.fr', 'visible': False, 'order': 82621}, {'symbol': 'ORA.fr', 'visible': True, 'order': 84621}, {'symbol': 'MC.fr', 'visible': True, 'order': 84041}, {'symbol': 'RNO.fr', 'visible': True, 'order': 85241}, {'symbol': 'SAN.fr', 'visible': True, 'order': 85351}, {'symbol': 'ADS.de', 'visible': True, 'order': 80261}, {'symbol': 'ALV.de', 'visible': True, 'order': 80481}, {'symbol': 'BAYN.de', 'visible': False, 'order': 80871}, {'symbol': 'BMW.de', 'visible': True, 'order': 81111}, {'symbol': 'DAI.de', 'visible': True, 'order': 81841}, {'symbol': 'DBK.de', 'visible': True, 'order': 81881}, {'symbol': 'DPW.de', 'visible': True, 'order': 82031}, {'symbol': 'DTE.de', 'visible': True, 'order': 82071}, {'symbol': 'LHA.de', 'visible': True, 'order': 83821}, {'symbol': 'SAP.de', 'visible': True, 'order': 85381}, {'symbol': 'VOW.de', 'visible': True, 'order': 86701}, {'symbol': 'AZN.uk', 'visible': True, 'order': 80761}, {'symbol': 'BARC.uk', 'visible': True, 'order': 80831}, {'symbol': 'BATS.uk', 'visible': False, 'order': 80851}, {'symbol': 'BP.uk', 'visible': False, 'order': 81221}, {'symbol': 'GSK.uk', 'visible': True, 'order': 83001}, {'symbol': 'HSBA.uk', 'visible': True, 'order': 83261}, {'symbol': 'TSCO.uk', 'visible': True, 'order': 86331}, {'symbol': 'BABA.us', 'visible': True, 'order': 80801}, {'symbol': 'DAL.us', 'visible': True, 'order': 81851}, {'symbol': 'NFLX.us', 'visible': False, 'order': 84421}, {'symbol': 'TSLA.us', 'visible': True, 'order': 86341}, {'symbol': 'GLEN.uk', 'visible': False, 'order': 82901}, {'symbol': 'RDSB.uk', 'visible': False, 'order': 85111}, {'symbol': 'SQ.us', 'visible': False, 'order': 85861}, {'symbol': 'LYFT.us', 'visible': False, 'order': 83961}, {'symbol': 'UAL.us', 'visible': False, 'order': 86421}, {'symbol': 'DKNG.us', 'visible': False, 'order': 81991}, {'symbol': 'SHOP.us', 'visible': False, 'order': 85611}, {'symbol': 'BYND.us', 'visible': False, 'order': 81331}, {'symbol': 'UBER.us', 'visible': False, 'order': 86431}, {'symbol': 'ZM.us', 'visible': False, 'order': 87001}, {'symbol': 'CRWD.us', 'visible': False, 'order': 81711}, {'symbol': 'BOWX.us', 'visible': False, 'order': 81211}, {'symbol': 'BEKE.us', 'visible': False, 'order': 80951}, {'symbol': 'CPNG.us', 'visible': False, 'order': 81661}, {'symbol': 'NET.us', 'visible': False, 'order': 84401}, {'symbol': 'RBLX.us', 'visible': False, 'order': 85081}, {'symbol': 'ENR.de', 'visible': False, 'order': 82331}, {'symbol': 'BIDU.hk', 'visible': False, 'order': 80991}, {'symbol': 'COIN.us', 'visible': False, 'order': 81581}, {'symbol': 'JD.us', 'visible': False, 'order': 83561}, {'symbol': 'PDD.us', 'visible': False, 'order': 84701}, {'symbol': 'TME.us', 'visible': False, 'order': 86271}, {'symbol': 'WB.us', 'visible': False, 'order': 86761}, {'symbol': 'BILI.us', 'visible': False, 'order': 81021}, {'symbol': 'NVDA.us', 'visible': False, 'order': 84541}, {'symbol': 'AMD.us', 'visible': False, 'order': 80521}, {'symbol': 'DADA.us', 'visible': False, 'order': 81831}, {'symbol': 'PTON.us', 'visible': False, 'order': 84971}, {'symbol': 'WORK.us', 'visible': False, 'order': 86861}, {'symbol': 'TENC.hk', 'visible': False, 'order': 86181}, {'symbol': 'MEIT.hk', 'visible': False, 'order': 84101}, {'symbol': 'BYDC.hk', 'visible': False, 'order': 81311}, {'symbol': 'XIAO.hk', 'visible': False, 'order': 86941}, {'symbol': 'BABA.hk', 'visible': False, 'order': 80791}, {'symbol': 'AIA.hk', 'visible': False, 'order': 80371}, {'symbol': 'HSBC.hk', 'visible': False, 'order': 83271}, {'symbol': 'WUXI.hk', 'visible': False, 'order': 86901}, {'symbol': 'HKEX.hk', 'visible': False, 'order': 83151}, {'symbol': 'GELY.hk', 'visible': False, 'order': 82811}, {'symbol': 'JD.hk', 'visible': False, 'order': 83551}, {'symbol': 'NETE.hk', 'visible': False, 'order': 84411}, {'symbol': 'PING.hk', 'visible': False, 'order': 84791}, {'symbol': 'SMIC.hk', 'visible': False, 'order': 85701}, {'symbol': 'SBIO.hk', 'visible': False, 'order': 85401}, {'symbol': 'GALA.hk', 'visible': False, 'order': 82731}, {'symbol': 'KIDE.hk', 'visible': False, 'order': 83681}, {'symbol': 'ALIH.hk', 'visible': False, 'order': 80431}, {'symbol': 'ICBC.hk', 'visible': False, 'order': 83321}, {'symbol': 'FLAT.hk', 'visible': False, 'order': 82571}, {'symbol': 'KSOF.hk', 'visible': False, 'order': 83751}, {'symbol': 'SMOO.hk', 'visible': False, 'order': 85721}, {'symbol': 'SUNN.hk', 'visible': False, 'order': 86001}, {'symbol': 'BYDE.hk', 'visible': False, 'order': 81321}, {'symbol': 'TWTR.us', 'visible': False, 'order': 86391}, {'symbol': 'MRNA.us', 'visible': False, 'order': 84241}, {'symbol': 'NIO.us', 'visible': False, 'order': 84451}, {'symbol': 'CCL.us', 'visible': False, 'order': 81441}, {'symbol': 'ABNB.us', 'visible': False, 'order': 80131}, {'symbol': 'DASH.us', 'visible': False, 'order': 81861}, {'symbol': 'AMC.us', 'visible': False, 'order': 80511}, {'symbol': 'BNGO.us', 'visible': False, 'order': 81141}, {'symbol': 'CCIV.us', 'visible': False, 'order': 81421}, {'symbol': 'FCEL.us', 'visible': False, 'order': 82491}, {'symbol': 'GME.us', 'visible': False, 'order': 82941}, {'symbol': 'PENN.us', 'visible': False, 'order': 84721}, {'symbol': 'PLTR.us', 'visible': False, 'order': 84811}, {'symbol': 'PLUG.us', 'visible': False, 'order': 84821}, {'symbol': 'PYPL.us', 'visible': False, 'order': 85001}, {'symbol': 'SNAP.us', 'visible': False, 'order': 85741}, {'symbol': 'SNOW.us', 'visible': False, 'order': 85771}, {'symbol': 'SPCE.us', 'visible': False, 'order': 85821}, {'symbol': 'XPEV.us', 'visible': False, 'order': 86961}]}}.
+|INFO|2021-05-14 08:38:35,614|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:38:35,614|Connection status: True
+|INFO|2021-05-14 08:38:35,614|2. connection status: established
+|INFO|2021-05-14 08:38:35,614|Socket state: True
+|INFO|2021-05-14 08:38:35,614|Thread state: True
+|INFO|2021-05-14 08:38:35,614|Thread name: Thread-1
+|INFO|2021-05-14 08:38:35,614|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:35,614|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:35,614|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BIDU.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:38:35,614|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:38:50,711|Can not unsubscribe instrument BIDU.us
+|INFO|2021-05-14 08:38:50,719|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:38:50,719|Connection status: True
+|INFO|2021-05-14 08:38:50,719|2. connection status: established
+|INFO|2021-05-14 08:38:50,719|Socket state: True
+|INFO|2021-05-14 08:38:50,719|Thread state: True
+|INFO|2021-05-14 08:38:50,719|Thread name: Thread-1
+|INFO|2021-05-14 08:38:50,719|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:50,719|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:50,719|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'FP.fr', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:38:50,719|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:38:50,977|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:38:50,984|Sending POST Request:
+|INFO|2021-05-14 08:38:50,984|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:38:50,984|Payload: symbol=FP.fr&visible=true
+|INFO|2021-05-14 08:38:50,984|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:38:50,984|Params: {'symbol': 'FP.fr', 'visible': 'true'}
+|INFO|2021-05-14 08:38:50,984|Proxies: {}
+|DEBUG|2021-05-14 08:38:50,984|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:38:50,984|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:38:50,984|Connection status: True
+|INFO|2021-05-14 08:38:50,984|2. connection status: established
+|INFO|2021-05-14 08:38:50,984|Socket state: True
+|INFO|2021-05-14 08:38:50,984|Thread state: True
+|INFO|2021-05-14 08:38:50,984|Thread name: Thread-1
+|INFO|2021-05-14 08:38:50,984|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:38:50,984|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:38:50,984|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BAYN.de', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:38:50,992|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:39:06,119|Can not unsubscribe instrument BAYN.de
+|INFO|2021-05-14 08:39:06,119|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:06,119|Connection status: True
+|INFO|2021-05-14 08:39:06,119|2. connection status: established
+|INFO|2021-05-14 08:39:06,119|Socket state: True
+|INFO|2021-05-14 08:39:06,119|Thread state: True
+|INFO|2021-05-14 08:39:06,119|Thread name: Thread-1
+|INFO|2021-05-14 08:39:06,119|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:06,119|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:06,119|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BATS.uk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:06,119|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:06,479|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:06,479|Sending POST Request:
+|INFO|2021-05-14 08:39:06,479|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:06,479|Payload: symbol=BATS.uk&visible=true
+|INFO|2021-05-14 08:39:06,479|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:06,479|Params: {'symbol': 'BATS.uk', 'visible': 'true'}
+|INFO|2021-05-14 08:39:06,479|Proxies: {}
+|DEBUG|2021-05-14 08:39:06,479|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:06,479|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:06,479|Connection status: True
+|INFO|2021-05-14 08:39:06,487|2. connection status: established
+|INFO|2021-05-14 08:39:06,487|Socket state: True
+|INFO|2021-05-14 08:39:06,487|Thread state: True
+|INFO|2021-05-14 08:39:06,487|Thread name: Thread-1
+|INFO|2021-05-14 08:39:06,487|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:06,487|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:06,487|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BP.uk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:06,487|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:06,859|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:06,867|Sending POST Request:
+|INFO|2021-05-14 08:39:06,867|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:06,867|Payload: symbol=BP.uk&visible=true
+|INFO|2021-05-14 08:39:06,867|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:39:06,867|Params: {'symbol': 'BP.uk', 'visible': 'true'}
+|INFO|2021-05-14 08:39:06,867|Proxies: {}
+|DEBUG|2021-05-14 08:39:06,867|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:06,867|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:06,867|Connection status: True
+|INFO|2021-05-14 08:39:06,867|2. connection status: established
+|INFO|2021-05-14 08:39:06,867|Socket state: True
+|INFO|2021-05-14 08:39:06,867|Thread state: True
+|INFO|2021-05-14 08:39:06,867|Thread name: Thread-1
+|INFO|2021-05-14 08:39:06,867|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:06,867|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:06,867|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'NFLX.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:06,867|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:07,643|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:07,651|Sending POST Request:
+|INFO|2021-05-14 08:39:07,651|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:07,651|Payload: symbol=NFLX.us&visible=true
+|INFO|2021-05-14 08:39:07,651|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:07,651|Params: {'symbol': 'NFLX.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:07,651|Proxies: {}
+|DEBUG|2021-05-14 08:39:07,651|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:07,651|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:07,651|Connection status: True
+|INFO|2021-05-14 08:39:07,651|2. connection status: established
+|INFO|2021-05-14 08:39:07,651|Socket state: True
+|INFO|2021-05-14 08:39:07,651|Thread state: True
+|INFO|2021-05-14 08:39:07,651|Thread name: Thread-1
+|INFO|2021-05-14 08:39:07,651|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:07,651|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:07,651|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'GLEN.uk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:07,651|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:08,240|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:08,240|Sending POST Request:
+|INFO|2021-05-14 08:39:08,240|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,240|Payload: symbol=GLEN.uk&visible=true
+|INFO|2021-05-14 08:39:08,240|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:08,240|Params: {'symbol': 'GLEN.uk', 'visible': 'true'}
+|INFO|2021-05-14 08:39:08,240|Proxies: {}
+|DEBUG|2021-05-14 08:39:08,240|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:08,240|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,240|Connection status: True
+|INFO|2021-05-14 08:39:08,240|2. connection status: established
+|INFO|2021-05-14 08:39:08,240|Socket state: True
+|INFO|2021-05-14 08:39:08,240|Thread state: True
+|INFO|2021-05-14 08:39:08,240|Thread name: Thread-1
+|INFO|2021-05-14 08:39:08,240|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:08,240|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:08,240|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'RDSB.uk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:08,240|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:08,632|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:08,632|Sending POST Request:
+|INFO|2021-05-14 08:39:08,632|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,632|Payload: symbol=RDSB.uk&visible=true
+|INFO|2021-05-14 08:39:08,632|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:08,632|Params: {'symbol': 'RDSB.uk', 'visible': 'true'}
+|INFO|2021-05-14 08:39:08,632|Proxies: {}
+|DEBUG|2021-05-14 08:39:08,632|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:08,632|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,632|Connection status: True
+|INFO|2021-05-14 08:39:08,632|2. connection status: established
+|INFO|2021-05-14 08:39:08,632|Socket state: True
+|INFO|2021-05-14 08:39:08,632|Thread state: True
+|INFO|2021-05-14 08:39:08,640|Thread name: Thread-1
+|INFO|2021-05-14 08:39:08,640|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:08,640|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:08,640|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'SQ.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:08,640|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:08,944|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:08,952|Sending POST Request:
+|INFO|2021-05-14 08:39:08,952|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,952|Payload: symbol=SQ.us&visible=true
+|INFO|2021-05-14 08:39:08,952|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:39:08,952|Params: {'symbol': 'SQ.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:08,952|Proxies: {}
+|DEBUG|2021-05-14 08:39:08,952|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:08,952|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:08,952|Connection status: True
+|INFO|2021-05-14 08:39:08,952|2. connection status: established
+|INFO|2021-05-14 08:39:08,952|Socket state: True
+|INFO|2021-05-14 08:39:08,952|Thread state: True
+|INFO|2021-05-14 08:39:08,952|Thread name: Thread-1
+|INFO|2021-05-14 08:39:08,952|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:08,952|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:08,952|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'LYFT.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:08,952|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:39:24,054|Can not unsubscribe instrument LYFT.us
+|INFO|2021-05-14 08:39:24,054|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:24,054|Connection status: True
+|INFO|2021-05-14 08:39:24,054|2. connection status: established
+|INFO|2021-05-14 08:39:24,054|Socket state: True
+|INFO|2021-05-14 08:39:24,054|Thread state: True
+|INFO|2021-05-14 08:39:24,054|Thread name: Thread-1
+|INFO|2021-05-14 08:39:24,054|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:24,054|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:24,054|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'UAL.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:24,054|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:39:39,165|Can not unsubscribe instrument UAL.us
+|INFO|2021-05-14 08:39:39,173|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:39,173|Connection status: True
+|INFO|2021-05-14 08:39:39,173|2. connection status: established
+|INFO|2021-05-14 08:39:39,173|Socket state: True
+|INFO|2021-05-14 08:39:39,173|Thread state: True
+|INFO|2021-05-14 08:39:39,173|Thread name: Thread-1
+|INFO|2021-05-14 08:39:39,173|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:39,173|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:39,173|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'DKNG.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:39,173|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:39:54,281|Can not unsubscribe instrument DKNG.us
+|INFO|2021-05-14 08:39:54,289|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:54,289|Connection status: True
+|INFO|2021-05-14 08:39:54,289|2. connection status: established
+|INFO|2021-05-14 08:39:54,289|Socket state: True
+|INFO|2021-05-14 08:39:54,289|Thread state: True
+|INFO|2021-05-14 08:39:54,289|Thread name: Thread-1
+|INFO|2021-05-14 08:39:54,289|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:54,289|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:54,289|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'SHOP.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:54,289|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:54,817|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:54,817|Sending POST Request:
+|INFO|2021-05-14 08:39:54,817|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:54,817|Payload: symbol=SHOP.us&visible=true
+|INFO|2021-05-14 08:39:54,817|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:54,817|Params: {'symbol': 'SHOP.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:54,817|Proxies: {}
+|DEBUG|2021-05-14 08:39:54,817|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:54,817|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:54,817|Connection status: True
+|INFO|2021-05-14 08:39:54,825|2. connection status: established
+|INFO|2021-05-14 08:39:54,825|Socket state: True
+|INFO|2021-05-14 08:39:54,825|Thread state: True
+|INFO|2021-05-14 08:39:54,825|Thread name: Thread-1
+|INFO|2021-05-14 08:39:54,825|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:54,825|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:54,825|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BYND.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:54,825|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:55,169|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:55,177|Sending POST Request:
+|INFO|2021-05-14 08:39:55,177|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,177|Payload: symbol=BYND.us&visible=true
+|INFO|2021-05-14 08:39:55,177|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:55,177|Params: {'symbol': 'BYND.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:55,177|Proxies: {}
+|DEBUG|2021-05-14 08:39:55,177|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:55,177|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,177|Connection status: True
+|INFO|2021-05-14 08:39:55,177|2. connection status: established
+|INFO|2021-05-14 08:39:55,177|Socket state: True
+|INFO|2021-05-14 08:39:55,177|Thread state: True
+|INFO|2021-05-14 08:39:55,177|Thread name: Thread-1
+|INFO|2021-05-14 08:39:55,185|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:55,185|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:55,185|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'UBER.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:55,185|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:55,559|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:55,559|Sending POST Request:
+|INFO|2021-05-14 08:39:55,559|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,559|Payload: symbol=UBER.us&visible=true
+|INFO|2021-05-14 08:39:55,559|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:55,559|Params: {'symbol': 'UBER.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:55,559|Proxies: {}
+|DEBUG|2021-05-14 08:39:55,559|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:55,559|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,559|Connection status: True
+|INFO|2021-05-14 08:39:55,559|2. connection status: established
+|INFO|2021-05-14 08:39:55,559|Socket state: True
+|INFO|2021-05-14 08:39:55,559|Thread state: True
+|INFO|2021-05-14 08:39:55,559|Thread name: Thread-1
+|INFO|2021-05-14 08:39:55,559|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:55,559|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:55,559|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'ZM.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:55,559|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:55,871|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:55,871|Sending POST Request:
+|INFO|2021-05-14 08:39:55,871|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,871|Payload: symbol=ZM.us&visible=true
+|INFO|2021-05-14 08:39:55,871|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:39:55,871|Params: {'symbol': 'ZM.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:55,871|Proxies: {}
+|DEBUG|2021-05-14 08:39:55,871|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:55,871|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:55,871|Connection status: True
+|INFO|2021-05-14 08:39:55,871|2. connection status: established
+|INFO|2021-05-14 08:39:55,871|Socket state: True
+|INFO|2021-05-14 08:39:55,871|Thread state: True
+|INFO|2021-05-14 08:39:55,871|Thread name: Thread-1
+|INFO|2021-05-14 08:39:55,871|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:55,871|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:55,871|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'CRWD.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:55,871|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:56,234|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:56,234|Sending POST Request:
+|INFO|2021-05-14 08:39:56,234|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:56,234|Payload: symbol=CRWD.us&visible=true
+|INFO|2021-05-14 08:39:56,234|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:56,234|Params: {'symbol': 'CRWD.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:56,234|Proxies: {}
+|DEBUG|2021-05-14 08:39:56,234|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:56,234|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:56,234|Connection status: True
+|INFO|2021-05-14 08:39:56,234|2. connection status: established
+|INFO|2021-05-14 08:39:56,234|Socket state: True
+|INFO|2021-05-14 08:39:56,234|Thread state: True
+|INFO|2021-05-14 08:39:56,234|Thread name: Thread-1
+|INFO|2021-05-14 08:39:56,234|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:56,234|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:56,234|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BOWX.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:56,234|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:39:56,592|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:39:56,592|Sending POST Request:
+|INFO|2021-05-14 08:39:56,592|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:39:56,592|Payload: symbol=BOWX.us&visible=true
+|INFO|2021-05-14 08:39:56,592|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:39:56,592|Params: {'symbol': 'BOWX.us', 'visible': 'true'}
+|INFO|2021-05-14 08:39:56,592|Proxies: {}
+|DEBUG|2021-05-14 08:39:56,592|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:39:56,592|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:39:56,592|Connection status: True
+|INFO|2021-05-14 08:39:56,592|2. connection status: established
+|INFO|2021-05-14 08:39:56,592|Socket state: True
+|INFO|2021-05-14 08:39:56,592|Thread state: True
+|INFO|2021-05-14 08:39:56,592|Thread name: Thread-1
+|INFO|2021-05-14 08:39:56,592|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:39:56,592|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:39:56,592|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BEKE.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:39:56,599|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:40:11,706|Can not unsubscribe instrument BEKE.us
+|INFO|2021-05-14 08:40:11,710|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:11,710|Connection status: True
+|INFO|2021-05-14 08:40:11,710|2. connection status: established
+|INFO|2021-05-14 08:40:11,710|Socket state: True
+|INFO|2021-05-14 08:40:11,710|Thread state: True
+|INFO|2021-05-14 08:40:11,710|Thread name: Thread-1
+|INFO|2021-05-14 08:40:11,710|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:11,710|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:11,710|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'CPNG.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:11,710|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:12,016|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:12,016|Sending POST Request:
+|INFO|2021-05-14 08:40:12,016|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,016|Payload: symbol=CPNG.us&visible=true
+|INFO|2021-05-14 08:40:12,016|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:12,016|Params: {'symbol': 'CPNG.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:12,016|Proxies: {}
+|DEBUG|2021-05-14 08:40:12,016|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:12,016|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,016|Connection status: True
+|INFO|2021-05-14 08:40:12,016|2. connection status: established
+|INFO|2021-05-14 08:40:12,016|Socket state: True
+|INFO|2021-05-14 08:40:12,016|Thread state: True
+|INFO|2021-05-14 08:40:12,016|Thread name: Thread-1
+|INFO|2021-05-14 08:40:12,016|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:12,016|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:12,016|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'NET.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:12,016|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:12,282|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:12,282|Sending POST Request:
+|INFO|2021-05-14 08:40:12,282|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,282|Payload: symbol=NET.us&visible=true
+|INFO|2021-05-14 08:40:12,282|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:40:12,282|Params: {'symbol': 'NET.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:12,282|Proxies: {}
+|DEBUG|2021-05-14 08:40:12,282|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:12,282|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,282|Connection status: True
+|INFO|2021-05-14 08:40:12,282|2. connection status: established
+|INFO|2021-05-14 08:40:12,282|Socket state: True
+|INFO|2021-05-14 08:40:12,282|Thread state: True
+|INFO|2021-05-14 08:40:12,282|Thread name: Thread-1
+|INFO|2021-05-14 08:40:12,282|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:12,286|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:12,286|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'RBLX.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:12,286|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:12,655|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:12,655|Sending POST Request:
+|INFO|2021-05-14 08:40:12,655|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,655|Payload: symbol=RBLX.us&visible=true
+|INFO|2021-05-14 08:40:12,655|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:12,655|Params: {'symbol': 'RBLX.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:12,655|Proxies: {}
+|DEBUG|2021-05-14 08:40:12,655|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:12,655|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,655|Connection status: True
+|INFO|2021-05-14 08:40:12,655|2. connection status: established
+|INFO|2021-05-14 08:40:12,655|Socket state: True
+|INFO|2021-05-14 08:40:12,655|Thread state: True
+|INFO|2021-05-14 08:40:12,655|Thread name: Thread-1
+|INFO|2021-05-14 08:40:12,655|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:12,655|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:12,655|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'ENR.de', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:12,659|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:12,963|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:12,967|Sending POST Request:
+|INFO|2021-05-14 08:40:12,967|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,967|Payload: symbol=ENR.de&visible=true
+|INFO|2021-05-14 08:40:12,967|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:40:12,967|Params: {'symbol': 'ENR.de', 'visible': 'true'}
+|INFO|2021-05-14 08:40:12,967|Proxies: {}
+|DEBUG|2021-05-14 08:40:12,967|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:12,967|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:12,967|Connection status: True
+|INFO|2021-05-14 08:40:12,967|2. connection status: established
+|INFO|2021-05-14 08:40:12,967|Socket state: True
+|INFO|2021-05-14 08:40:12,967|Thread state: True
+|INFO|2021-05-14 08:40:12,967|Thread name: Thread-1
+|INFO|2021-05-14 08:40:12,967|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:12,967|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:12,967|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BIDU.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:12,967|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:13,488|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:13,492|Sending POST Request:
+|INFO|2021-05-14 08:40:13,492|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:13,492|Payload: symbol=BIDU.hk&visible=true
+|INFO|2021-05-14 08:40:13,492|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:13,492|Params: {'symbol': 'BIDU.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:40:13,492|Proxies: {}
+|DEBUG|2021-05-14 08:40:13,492|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:13,492|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:13,492|Connection status: True
+|INFO|2021-05-14 08:40:13,492|2. connection status: established
+|INFO|2021-05-14 08:40:13,492|Socket state: True
+|INFO|2021-05-14 08:40:13,492|Thread state: True
+|INFO|2021-05-14 08:40:13,492|Thread name: Thread-1
+|INFO|2021-05-14 08:40:13,492|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:13,492|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:13,492|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'COIN.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:13,492|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:13,790|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:13,790|Sending POST Request:
+|INFO|2021-05-14 08:40:13,794|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:13,794|Payload: symbol=COIN.us&visible=true
+|INFO|2021-05-14 08:40:13,794|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:13,794|Params: {'symbol': 'COIN.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:13,794|Proxies: {}
+|DEBUG|2021-05-14 08:40:13,794|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:13,794|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:13,794|Connection status: True
+|INFO|2021-05-14 08:40:13,794|2. connection status: established
+|INFO|2021-05-14 08:40:13,794|Socket state: True
+|INFO|2021-05-14 08:40:13,794|Thread state: True
+|INFO|2021-05-14 08:40:13,794|Thread name: Thread-1
+|INFO|2021-05-14 08:40:13,794|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:13,794|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:13,794|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'JD.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:13,798|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:14,057|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:14,057|Sending POST Request:
+|INFO|2021-05-14 08:40:14,057|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,057|Payload: symbol=JD.us&visible=true
+|INFO|2021-05-14 08:40:14,057|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:40:14,057|Params: {'symbol': 'JD.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:14,057|Proxies: {}
+|DEBUG|2021-05-14 08:40:14,057|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:14,057|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,057|Connection status: True
+|INFO|2021-05-14 08:40:14,057|2. connection status: established
+|INFO|2021-05-14 08:40:14,057|Socket state: True
+|INFO|2021-05-14 08:40:14,057|Thread state: True
+|INFO|2021-05-14 08:40:14,057|Thread name: Thread-1
+|INFO|2021-05-14 08:40:14,057|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:14,057|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:14,057|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'PDD.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:14,061|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:14,366|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:14,369|Sending POST Request:
+|INFO|2021-05-14 08:40:14,369|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,369|Payload: symbol=PDD.us&visible=true
+|INFO|2021-05-14 08:40:14,369|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:40:14,369|Params: {'symbol': 'PDD.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:14,369|Proxies: {}
+|DEBUG|2021-05-14 08:40:14,369|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:14,369|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,369|Connection status: True
+|INFO|2021-05-14 08:40:14,369|2. connection status: established
+|INFO|2021-05-14 08:40:14,369|Socket state: True
+|INFO|2021-05-14 08:40:14,369|Thread state: True
+|INFO|2021-05-14 08:40:14,369|Thread name: Thread-1
+|INFO|2021-05-14 08:40:14,373|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:14,373|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:14,373|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'TME.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:14,373|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:14,688|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:14,689|Sending POST Request:
+|INFO|2021-05-14 08:40:14,689|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,689|Payload: symbol=TME.us&visible=true
+|INFO|2021-05-14 08:40:14,690|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:40:14,690|Params: {'symbol': 'TME.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:14,690|Proxies: {}
+|DEBUG|2021-05-14 08:40:14,690|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:14,690|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:14,690|Connection status: True
+|INFO|2021-05-14 08:40:14,690|2. connection status: established
+|INFO|2021-05-14 08:40:14,690|Socket state: True
+|INFO|2021-05-14 08:40:14,690|Thread state: True
+|INFO|2021-05-14 08:40:14,690|Thread name: Thread-1
+|INFO|2021-05-14 08:40:14,690|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:14,690|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:14,690|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'WB.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:14,690|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:40:29,795|Can not unsubscribe instrument WB.us
+|INFO|2021-05-14 08:40:29,795|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:29,795|Connection status: True
+|INFO|2021-05-14 08:40:29,799|2. connection status: established
+|INFO|2021-05-14 08:40:29,799|Socket state: True
+|INFO|2021-05-14 08:40:29,799|Thread state: True
+|INFO|2021-05-14 08:40:29,799|Thread name: Thread-1
+|INFO|2021-05-14 08:40:29,799|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:29,799|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:29,799|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BILI.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:29,803|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:30,173|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:30,181|Sending POST Request:
+|INFO|2021-05-14 08:40:30,181|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:30,181|Payload: symbol=BILI.us&visible=true
+|INFO|2021-05-14 08:40:30,181|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:30,181|Params: {'symbol': 'BILI.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:30,181|Proxies: {}
+|DEBUG|2021-05-14 08:40:30,181|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:30,181|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:30,181|Connection status: True
+|INFO|2021-05-14 08:40:30,181|2. connection status: established
+|INFO|2021-05-14 08:40:30,181|Socket state: True
+|INFO|2021-05-14 08:40:30,185|Thread state: True
+|INFO|2021-05-14 08:40:30,185|Thread name: Thread-1
+|INFO|2021-05-14 08:40:30,185|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:30,185|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:30,185|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'NVDA.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:30,189|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:40:45,305|Can not unsubscribe instrument NVDA.us
+|INFO|2021-05-14 08:40:45,305|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:45,305|Connection status: True
+|INFO|2021-05-14 08:40:45,305|2. connection status: established
+|INFO|2021-05-14 08:40:45,305|Socket state: True
+|INFO|2021-05-14 08:40:45,305|Thread state: True
+|INFO|2021-05-14 08:40:45,305|Thread name: Thread-1
+|INFO|2021-05-14 08:40:45,305|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:45,305|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:45,305|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'AMD.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:45,313|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:45,631|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:45,639|Sending POST Request:
+|INFO|2021-05-14 08:40:45,639|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:45,639|Payload: symbol=AMD.us&visible=true
+|INFO|2021-05-14 08:40:45,639|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:40:45,639|Params: {'symbol': 'AMD.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:45,639|Proxies: {}
+|DEBUG|2021-05-14 08:40:45,639|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:45,639|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:45,639|Connection status: True
+|INFO|2021-05-14 08:40:45,639|2. connection status: established
+|INFO|2021-05-14 08:40:45,639|Socket state: True
+|INFO|2021-05-14 08:40:45,639|Thread state: True
+|INFO|2021-05-14 08:40:45,639|Thread name: Thread-1
+|INFO|2021-05-14 08:40:45,639|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:45,639|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:45,639|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'DADA.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:45,639|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:45,950|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:45,951|Sending POST Request:
+|INFO|2021-05-14 08:40:45,951|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:45,951|Payload: symbol=DADA.us&visible=true
+|INFO|2021-05-14 08:40:45,951|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:45,951|Params: {'symbol': 'DADA.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:45,951|Proxies: {}
+|DEBUG|2021-05-14 08:40:45,951|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:45,951|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:45,951|Connection status: True
+|INFO|2021-05-14 08:40:45,951|2. connection status: established
+|INFO|2021-05-14 08:40:45,951|Socket state: True
+|INFO|2021-05-14 08:40:45,951|Thread state: True
+|INFO|2021-05-14 08:40:45,951|Thread name: Thread-1
+|INFO|2021-05-14 08:40:45,951|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:45,951|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:45,951|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'PTON.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:45,951|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:46,489|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:46,489|Sending POST Request:
+|INFO|2021-05-14 08:40:46,489|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:46,489|Payload: symbol=PTON.us&visible=true
+|INFO|2021-05-14 08:40:46,489|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:46,489|Params: {'symbol': 'PTON.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:46,489|Proxies: {}
+|DEBUG|2021-05-14 08:40:46,489|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:46,489|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:46,489|Connection status: True
+|INFO|2021-05-14 08:40:46,489|2. connection status: established
+|INFO|2021-05-14 08:40:46,489|Socket state: True
+|INFO|2021-05-14 08:40:46,489|Thread state: True
+|INFO|2021-05-14 08:40:46,489|Thread name: Thread-1
+|INFO|2021-05-14 08:40:46,489|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:46,489|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:46,489|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'WORK.us', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:46,497|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:46,855|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:46,863|Sending POST Request:
+|INFO|2021-05-14 08:40:46,863|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:46,863|Payload: symbol=WORK.us&visible=true
+|INFO|2021-05-14 08:40:46,863|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:46,863|Params: {'symbol': 'WORK.us', 'visible': 'true'}
+|INFO|2021-05-14 08:40:46,863|Proxies: {}
+|DEBUG|2021-05-14 08:40:46,863|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:46,863|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:46,863|Connection status: True
+|INFO|2021-05-14 08:40:46,863|2. connection status: established
+|INFO|2021-05-14 08:40:46,863|Socket state: True
+|INFO|2021-05-14 08:40:46,863|Thread state: True
+|INFO|2021-05-14 08:40:46,863|Thread name: Thread-1
+|INFO|2021-05-14 08:40:46,863|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:46,863|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:46,863|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'TENC.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:46,863|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:47,221|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:47,221|Sending POST Request:
+|INFO|2021-05-14 08:40:47,221|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:47,221|Payload: symbol=TENC.hk&visible=true
+|INFO|2021-05-14 08:40:47,221|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:47,221|Params: {'symbol': 'TENC.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:40:47,221|Proxies: {}
+|DEBUG|2021-05-14 08:40:47,221|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:47,221|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:47,221|Connection status: True
+|INFO|2021-05-14 08:40:47,221|2. connection status: established
+|INFO|2021-05-14 08:40:47,221|Socket state: True
+|INFO|2021-05-14 08:40:47,221|Thread state: True
+|INFO|2021-05-14 08:40:47,221|Thread name: Thread-1
+|INFO|2021-05-14 08:40:47,221|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:47,221|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:47,221|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'MEIT.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:47,221|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:40:47,756|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:40:47,764|Sending POST Request:
+|INFO|2021-05-14 08:40:47,764|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:40:47,764|Payload: symbol=MEIT.hk&visible=true
+|INFO|2021-05-14 08:40:47,764|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:40:47,764|Params: {'symbol': 'MEIT.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:40:47,764|Proxies: {}
+|DEBUG|2021-05-14 08:40:47,764|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:40:47,764|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:40:47,764|Connection status: True
+|INFO|2021-05-14 08:40:47,764|2. connection status: established
+|INFO|2021-05-14 08:40:47,764|Socket state: True
+|INFO|2021-05-14 08:40:47,764|Thread state: True
+|INFO|2021-05-14 08:40:47,764|Thread name: Thread-1
+|INFO|2021-05-14 08:40:47,764|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:40:47,764|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:40:47,764|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BYDC.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:40:47,764|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 08:41:02,871|Can not unsubscribe instrument BYDC.hk
+|INFO|2021-05-14 08:41:02,871|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:02,871|Connection status: True
+|INFO|2021-05-14 08:41:02,871|2. connection status: established
+|INFO|2021-05-14 08:41:02,871|Socket state: True
+|INFO|2021-05-14 08:41:02,871|Thread state: True
+|INFO|2021-05-14 08:41:02,871|Thread name: Thread-1
+|INFO|2021-05-14 08:41:02,871|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:02,871|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:02,871|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'XIAO.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:02,871|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:15,364|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:15,364|Sending POST Request:
+|INFO|2021-05-14 08:41:15,364|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:15,364|Payload: symbol=XIAO.hk&visible=true
+|INFO|2021-05-14 08:41:15,364|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:15,364|Params: {'symbol': 'XIAO.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:15,364|Proxies: {}
+|DEBUG|2021-05-14 08:41:15,364|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:15,364|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:15,364|Connection status: True
+|INFO|2021-05-14 08:41:15,364|2. connection status: established
+|INFO|2021-05-14 08:41:15,372|Socket state: True
+|INFO|2021-05-14 08:41:15,372|Thread state: True
+|INFO|2021-05-14 08:41:15,372|Thread name: Thread-1
+|INFO|2021-05-14 08:41:15,372|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:15,372|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:15,372|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'BABA.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:15,372|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:15,730|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:15,734|Sending POST Request:
+|INFO|2021-05-14 08:41:15,734|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:15,734|Payload: symbol=BABA.hk&visible=true
+|INFO|2021-05-14 08:41:15,734|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:15,734|Params: {'symbol': 'BABA.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:15,734|Proxies: {}
+|DEBUG|2021-05-14 08:41:15,734|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:15,734|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:15,734|Connection status: True
+|INFO|2021-05-14 08:41:15,734|2. connection status: established
+|INFO|2021-05-14 08:41:15,734|Socket state: True
+|INFO|2021-05-14 08:41:15,734|Thread state: True
+|INFO|2021-05-14 08:41:15,734|Thread name: Thread-1
+|INFO|2021-05-14 08:41:15,734|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:15,734|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:15,734|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'AIA.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:15,737|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:16,178|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:16,186|Sending POST Request:
+|INFO|2021-05-14 08:41:16,186|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,186|Payload: symbol=AIA.hk&visible=true
+|INFO|2021-05-14 08:41:16,186|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '26'}
+|INFO|2021-05-14 08:41:16,186|Params: {'symbol': 'AIA.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:16,186|Proxies: {}
+|DEBUG|2021-05-14 08:41:16,186|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:16,186|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,186|Connection status: True
+|INFO|2021-05-14 08:41:16,186|2. connection status: established
+|INFO|2021-05-14 08:41:16,186|Socket state: True
+|INFO|2021-05-14 08:41:16,186|Thread state: True
+|INFO|2021-05-14 08:41:16,186|Thread name: Thread-1
+|INFO|2021-05-14 08:41:16,186|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:16,186|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:16,186|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'HSBC.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:16,186|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:16,492|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:16,492|Sending POST Request:
+|INFO|2021-05-14 08:41:16,492|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,492|Payload: symbol=HSBC.hk&visible=true
+|INFO|2021-05-14 08:41:16,492|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:16,492|Params: {'symbol': 'HSBC.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:16,492|Proxies: {}
+|DEBUG|2021-05-14 08:41:16,492|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:16,492|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,492|Connection status: True
+|INFO|2021-05-14 08:41:16,492|2. connection status: established
+|INFO|2021-05-14 08:41:16,492|Socket state: True
+|INFO|2021-05-14 08:41:16,492|Thread state: True
+|INFO|2021-05-14 08:41:16,492|Thread name: Thread-1
+|INFO|2021-05-14 08:41:16,492|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:16,492|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:16,492|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'WUXI.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:16,500|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:16,923|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:16,930|Sending POST Request:
+|INFO|2021-05-14 08:41:16,930|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,930|Payload: symbol=WUXI.hk&visible=true
+|INFO|2021-05-14 08:41:16,930|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:16,930|Params: {'symbol': 'WUXI.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:16,930|Proxies: {}
+|DEBUG|2021-05-14 08:41:16,930|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:16,930|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:16,930|Connection status: True
+|INFO|2021-05-14 08:41:16,930|2. connection status: established
+|INFO|2021-05-14 08:41:16,930|Socket state: True
+|INFO|2021-05-14 08:41:16,930|Thread state: True
+|INFO|2021-05-14 08:41:16,930|Thread name: Thread-1
+|INFO|2021-05-14 08:41:16,930|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:16,930|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:16,930|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'HKEX.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:16,938|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:17,247|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:17,247|Sending POST Request:
+|INFO|2021-05-14 08:41:17,247|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:17,247|Payload: symbol=HKEX.hk&visible=true
+|INFO|2021-05-14 08:41:17,247|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:17,247|Params: {'symbol': 'HKEX.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:17,247|Proxies: {}
+|DEBUG|2021-05-14 08:41:17,247|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:17,247|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:17,247|Connection status: True
+|INFO|2021-05-14 08:41:17,247|2. connection status: established
+|INFO|2021-05-14 08:41:17,247|Socket state: True
+|INFO|2021-05-14 08:41:17,247|Thread state: True
+|INFO|2021-05-14 08:41:17,247|Thread name: Thread-1
+|INFO|2021-05-14 08:41:17,247|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:17,247|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:17,247|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'GELY.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:17,247|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:17,633|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:17,633|Sending POST Request:
+|INFO|2021-05-14 08:41:17,633|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:17,641|Payload: symbol=GELY.hk&visible=true
+|INFO|2021-05-14 08:41:17,641|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:17,641|Params: {'symbol': 'GELY.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:17,641|Proxies: {}
+|DEBUG|2021-05-14 08:41:17,641|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:17,641|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:17,641|Connection status: True
+|INFO|2021-05-14 08:41:17,641|2. connection status: established
+|INFO|2021-05-14 08:41:17,641|Socket state: True
+|INFO|2021-05-14 08:41:17,641|Thread state: True
+|INFO|2021-05-14 08:41:17,641|Thread name: Thread-1
+|INFO|2021-05-14 08:41:17,641|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:17,641|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:17,641|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'JD.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:17,641|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:18,029|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:18,029|Sending POST Request:
+|INFO|2021-05-14 08:41:18,029|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,029|Payload: symbol=JD.hk&visible=true
+|INFO|2021-05-14 08:41:18,029|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '25'}
+|INFO|2021-05-14 08:41:18,029|Params: {'symbol': 'JD.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:18,029|Proxies: {}
+|DEBUG|2021-05-14 08:41:18,029|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:18,029|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,029|Connection status: True
+|INFO|2021-05-14 08:41:18,029|2. connection status: established
+|INFO|2021-05-14 08:41:18,029|Socket state: True
+|INFO|2021-05-14 08:41:18,029|Thread state: True
+|INFO|2021-05-14 08:41:18,029|Thread name: Thread-1
+|INFO|2021-05-14 08:41:18,029|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:18,029|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:18,029|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'NETE.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:18,037|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:18,316|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:18,316|Sending POST Request:
+|INFO|2021-05-14 08:41:18,316|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,316|Payload: symbol=NETE.hk&visible=true
+|INFO|2021-05-14 08:41:18,316|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:18,316|Params: {'symbol': 'NETE.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:18,316|Proxies: {}
+|DEBUG|2021-05-14 08:41:18,316|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:18,316|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,316|Connection status: True
+|INFO|2021-05-14 08:41:18,316|2. connection status: established
+|INFO|2021-05-14 08:41:18,316|Socket state: True
+|INFO|2021-05-14 08:41:18,316|Thread state: True
+|INFO|2021-05-14 08:41:18,316|Thread name: Thread-1
+|INFO|2021-05-14 08:41:18,316|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:18,316|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:18,316|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'PING.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:18,316|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:18,767|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:18,767|Sending POST Request:
+|INFO|2021-05-14 08:41:18,767|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,767|Payload: symbol=PING.hk&visible=true
+|INFO|2021-05-14 08:41:18,767|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:18,767|Params: {'symbol': 'PING.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:18,767|Proxies: {}
+|DEBUG|2021-05-14 08:41:18,767|Server answer: {'response': {'executed': True}, 'data': {}}.
+|INFO|2021-05-14 08:41:18,767|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:18,767|Connection status: True
+|INFO|2021-05-14 08:41:18,767|2. connection status: established
+|INFO|2021-05-14 08:41:18,767|Socket state: True
+|INFO|2021-05-14 08:41:18,767|Thread state: True
+|INFO|2021-05-14 08:41:18,767|Thread name: Thread-1
+|INFO|2021-05-14 08:41:18,767|Socket id: BOJFxbv7AaKU6x-FC772
+|INFO|2021-05-14 08:41:18,767|Created bearer token: Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:41:18,767|Sending request to https://api-demo.fxcm.com/trading/update_subscriptions, parameter: {'symbol': 'SMIC.hk', 'visible': 'true'}.
+|DEBUG|2021-05-14 08:41:18,775|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:41:19,177|https://api-demo.fxcm.com:443 "POST /trading/update_subscriptions HTTP/1.1" 200 40
+|INFO|2021-05-14 08:41:19,177|Sending POST Request:
+|INFO|2021-05-14 08:41:19,177|URL: https://api-demo.fxcm.com:443/trading/update_subscriptions
+|INFO|2021-05-14 08:41:19,177|Payload: symbol=SMIC.hk&visible=true
+|INFO|2021-05-14 08:41:19,177|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer BOJFxbv7AaKU6x-FC772d1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded', 'Content-Length': '27'}
+|INFO|2021-05-14 08:41:19,177|Params: {'symbol': 'SMIC.hk', 'visible': 'true'}
+|INFO|2021-05-14 08:41:19,177|Proxies: {}
+|DEBUG|2021-05-14 08:41:19,177|Server answer: {'response': {'executed': True}, 'data': {}}.
+|WARNING|2021-05-14 08:41:19,177|Max. number of update request reached, renewing connection.
+|INFO|2021-05-14 08:41:20,342|In handle_request with method trading/update_subscriptions
+|INFO|2021-05-14 08:41:20,342|Connection status: False
+|INFO|2021-05-14 08:41:20,342|2. connection status: established
+|INFO|2021-05-14 08:41:20,342|Socket state: False
+|INFO|2021-05-14 08:41:20,342|Thread state: False
+|INFO|2021-05-14 08:41:20,342|Thread name: Thread-1
+|INFO|2021-05-14 08:41:20,342|Socket id: None
+|DEBUG|2021-05-14 08:41:20,342|Access token: d1a05f623d2a396ec7f7ce33ee90721f0acdf456.
+|DEBUG|2021-05-14 08:41:20,479|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999680.3423648 HTTP/1.1" 200 None
+|INFO|2021-05-14 08:41:20,875|Socket established: <socketio.client.Client object at 0x000001644B30EFD0>.
+|INFO|2021-05-14 08:41:21,789|Connection established.
+|INFO|2021-05-14 08:43:20,390|Connecting FXCM Server
+|DEBUG|2021-05-14 08:43:20,390|Access token: d1a05f623d2a396ec7f7ce33ee90721f0acdf456.
+|DEBUG|2021-05-14 08:43:20,398|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:43:20,731|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999800.3908515 HTTP/1.1" 200 None
+|INFO|2021-05-14 08:43:35,902|Socket established: <socketio.client.Client object at 0x000001BB719FEFD0>.
+|DEBUG|2021-05-14 08:43:35,910|Starting new HTTPS connection (2): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:43:36,046|https://api-demo.fxcm.com:443 "POST /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&sid=1FNMJQwOQxqzVD7QC8B2 HTTP/1.1" 200 2
+|INFO|2021-05-14 08:43:51,004|Disconnected.
+|DEBUG|2021-05-14 08:43:51,765|Starting new HTTPS connection (3): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 08:43:52,031|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999831.7576616 HTTP/1.1" 200 None
+|DEBUG|2021-05-14 08:44:07,288|https://api-demo.fxcm.com:443 "POST /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&sid=Jja3PvGpiRNXkSCXC8Cf HTTP/1.1" 200 2
+|DEBUG|2021-05-14 08:44:07,320|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&sid=Jja3PvGpiRNXkSCXC8Cf&t=1620999847.1731908 HTTP/1.1" 200 26628
+|INFO|2021-05-14 08:44:07,328|Disconnected.
+|DEBUG|2021-05-14 08:44:08,871|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1620999847.8885524 HTTP/1.1" 200 None
+|INFO|2021-05-14 08:44:10,246|Connection established.
+|INFO|2021-05-14 08:44:10,739|In handle_request with method trading/get_model
+|INFO|2021-05-14 08:44:10,739|Connection status: True
+|INFO|2021-05-14 08:44:10,739|2. connection status: established
+|INFO|2021-05-14 08:44:10,739|Socket state: True
+|INFO|2021-05-14 08:44:10,739|Thread state: True
+|INFO|2021-05-14 08:44:10,739|Thread name: Thread-1
+|INFO|2021-05-14 08:44:10,739|Socket id: iWaUCYy36lpElwfrC8C2
+|INFO|2021-05-14 08:44:10,739|Created bearer token: Bearer iWaUCYy36lpElwfrC8C2d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 08:44:10,739|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Account']}.
+|DEBUG|2021-05-14 08:44:10,739|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|INFO|2021-05-14 09:04:45,137|Disconnected.
+|DEBUG|2021-05-14 09:04:46,301|Resetting dropped connection: api-demo.fxcm.com
+|DEBUG|2021-05-14 09:04:46,627|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1621001086.2960184 HTTP/1.1" 200 None
+|INFO|2021-05-14 09:04:47,895|Connection established.
+|INFO|2021-05-14 09:25:22,054|Connecting FXCM Server
+|DEBUG|2021-05-14 09:25:22,055|Access token: d1a05f623d2a396ec7f7ce33ee90721f0acdf456.
+|DEBUG|2021-05-14 09:25:22,061|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 09:25:22,429|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1621002322.055799 HTTP/1.1" 200 None
+|INFO|2021-05-14 09:25:23,368|Socket established: <socketio.client.Client object at 0x0000023FC7F1FFD0>.
+|INFO|2021-05-14 09:25:23,447|Connection established.
+|INFO|2021-05-14 09:25:24,071|In handle_request with method trading/get_model
+|INFO|2021-05-14 09:25:24,072|Connection status: True
+|INFO|2021-05-14 09:25:24,073|2. connection status: established
+|INFO|2021-05-14 09:25:24,075|Socket state: True
+|INFO|2021-05-14 09:25:24,075|Thread state: True
+|INFO|2021-05-14 09:25:24,078|Thread name: Thread-1
+|INFO|2021-05-14 09:25:24,078|Socket id: NTwH1lVF5Oa0D9MkC811
+|INFO|2021-05-14 09:25:24,080|Created bearer token: Bearer NTwH1lVF5Oa0D9MkC811d1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 09:25:24,081|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Account']}.
+|DEBUG|2021-05-14 09:25:24,094|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|INFO|2021-05-14 09:46:54,554|Connecting FXCM Server
+|DEBUG|2021-05-14 09:46:54,555|Access token: d1a05f623d2a396ec7f7ce33ee90721f0acdf456.
+|DEBUG|2021-05-14 09:46:54,562|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 09:46:54,949|https://api-demo.fxcm.com:443 "GET /socket.io/?access_token=d1a05f623d2a396ec7f7ce33ee90721f0acdf456&agent=pythonquants&wait_for_connection=False&transport=polling&EIO=3&t=1621003614.5567844 HTTP/1.1" 200 None
+|INFO|2021-05-14 09:46:55,371|Socket established: <socketio.client.Client object at 0x000001FFC52BEFD0>.
+|INFO|2021-05-14 09:46:56,322|Connection established.
+|INFO|2021-05-14 09:46:56,572|In handle_request with method trading/get_model
+|INFO|2021-05-14 09:46:56,573|Connection status: True
+|INFO|2021-05-14 09:46:56,573|2. connection status: established
+|INFO|2021-05-14 09:46:56,573|Socket state: True
+|INFO|2021-05-14 09:46:56,573|Thread state: True
+|INFO|2021-05-14 09:46:56,573|Thread name: Thread-1
+|INFO|2021-05-14 09:46:56,573|Socket id: 1ATdDtzK1qO06X8vC9Qk
+|INFO|2021-05-14 09:46:56,574|Created bearer token: Bearer 1ATdDtzK1qO06X8vC9Qkd1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 09:46:56,574|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Account']}.
+|DEBUG|2021-05-14 09:46:56,577|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 09:46:56,921|https://api-demo.fxcm.com:443 "GET /trading/get_model?models=Account HTTP/1.1" 200 313
+|INFO|2021-05-14 09:46:56,924|Sending GET Request:
+|INFO|2021-05-14 09:46:56,924|URL: https://api-demo.fxcm.com:443/trading/get_model?models=Account
+|INFO|2021-05-14 09:46:56,924|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer 1ATdDtzK1qO06X8vC9Qkd1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded'}
+|INFO|2021-05-14 09:46:56,924|Params: {'models': ['Account']}
+|INFO|2021-05-14 09:46:56,924|Proxies: {}
+|DEBUG|2021-05-14 09:46:56,924|Server answer: {'response': {'executed': True}, 'accounts': [{'t': 6, 'ratePrecision': 0, 'accountId': '1514209', 'balance': 20000, 'usdMr': 0, 'mc': 'N', 'mcDate': '', 'accountName': '01514209', 'usdMr3': 0, 'hedging': 'Y', 'usableMargin3': 20000, 'usableMarginPerc': 100, 'usableMargin3Perc': 100, 'equity': 20000, 'usableMargin': 20000, 'bus': '1000', 'dayPL': 0, 'grossPL': 0}, {'t': 6, 'ratePrecision': 0, 'accountId': '', 'balance': 20000, 'usdMr': 0, 'mc': '', 'mcDate': None, 'accountName': '', 'usdMr3': 0, 'hedging': '', 'usableMargin3': 20000, 'usableMarginPerc': 100, 'usableMargin3Perc': 100, 'equity': 20000, 'usableMargin': 20000, 'bus': None, 'dayPL': 0, 'grossPL': 0, 'isTotal': True}]}.
+|WARNING|2021-05-14 09:46:56,924|Default account set to 1514209, to change use set_default_account().
+|INFO|2021-05-14 09:46:56,924|In handle_request with method trading/get_model
+|INFO|2021-05-14 09:46:56,924|Connection status: True
+|INFO|2021-05-14 09:46:56,924|2. connection status: established
+|INFO|2021-05-14 09:46:56,925|Socket state: True
+|INFO|2021-05-14 09:46:56,925|Thread state: True
+|INFO|2021-05-14 09:46:56,925|Thread name: Thread-1
+|INFO|2021-05-14 09:46:56,925|Socket id: 1ATdDtzK1qO06X8vC9Qk
+|INFO|2021-05-14 09:46:56,925|Created bearer token: Bearer 1ATdDtzK1qO06X8vC9Qkd1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 09:46:56,925|Sending request to https://api-demo.fxcm.com/trading/get_model, parameter: {'models': ['Order']}.
+|DEBUG|2021-05-14 09:46:56,927|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|DEBUG|2021-05-14 09:46:57,169|https://api-demo.fxcm.com:443 "GET /trading/get_model?models=Order HTTP/1.1" 200 42
+|INFO|2021-05-14 09:46:57,171|Sending GET Request:
+|INFO|2021-05-14 09:46:57,171|URL: https://api-demo.fxcm.com:443/trading/get_model?models=Order
+|INFO|2021-05-14 09:46:57,171|Headers: {'User-Agent': 'request', 'Accept-Encoding': 'gzip, deflate', 'Accept': 'application/json', 'Connection': 'keep-alive', 'Authorization': 'Bearer 1ATdDtzK1qO06X8vC9Qkd1a05f623d2a396ec7f7ce33ee90721f0acdf456', 'Content-Type': 'application/x-www-form-urlencoded'}
+|INFO|2021-05-14 09:46:57,171|Params: {'models': ['Order']}
+|INFO|2021-05-14 09:46:57,171|Proxies: {}
+|DEBUG|2021-05-14 09:46:57,171|Server answer: {'response': {'executed': True}, 'orders': []}.
+|DEBUG|2021-05-14 09:46:57,171|Fetching instruments table.
+|INFO|2021-05-14 09:46:57,171|In handle_request with method trading/get_instruments
+|INFO|2021-05-14 09:46:57,171|Connection status: True
+|INFO|2021-05-14 09:46:57,172|2. connection status: established
+|INFO|2021-05-14 09:46:57,172|Socket state: True
+|INFO|2021-05-14 09:46:57,172|Thread state: True
+|INFO|2021-05-14 09:46:57,172|Thread name: Thread-1
+|INFO|2021-05-14 09:46:57,172|Socket id: 1ATdDtzK1qO06X8vC9Qk
+|INFO|2021-05-14 09:46:57,172|Created bearer token: Bearer 1ATdDtzK1qO06X8vC9Qkd1a05f623d2a396ec7f7ce33ee90721f0acdf456
+|INFO|2021-05-14 09:46:57,172|Sending request to https://api-demo.fxcm.com/trading/get_instruments, parameter: {}.
+|DEBUG|2021-05-14 09:46:57,174|Starting new HTTPS connection (1): api-demo.fxcm.com:443
+|WARNING|2021-05-14 09:47:12,272|Can not fetch instruments table from server.

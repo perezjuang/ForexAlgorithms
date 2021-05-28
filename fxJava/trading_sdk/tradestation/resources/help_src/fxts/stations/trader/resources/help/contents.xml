@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentTree NodeUrlPrefix="fxts/stations/trader/resources/help">
+    <node id="IDS_HELP_PROBLEM_STATEMENT" description="Problem statement" url="Problem statement.htm">
+        <node id="IDS_HELP_UI" description="The User Interface" url="The User Interface.htm">
+            <node id="IDS_HELP_APPLICATION_WND" description="The application window">
+                <node id="IDS_HELP_DISCONNECTED_MENU" description="The menu of application window in disconnected state" url="The menu of application window in disconnected state.htm"/>
+                <node id="IDS_HELP_CONNECTED_MENU" description="The menu of application window in connected state" url="The menu of application window in connected state.htm"/>
+                <node id="IDS_HELP_SUBMENU_FUNCTIONALITIES" description="The functionalities of sub menus" url="The functionalities of sub menus.htm"/>
+                <node id="IDS_HELP_TOOLBAR" description="The Tool bar of application window" url="The Tool bar of application window.htm"/>
+                <node id="IDS_HELP_TOOLBAR_FUNCTIONALITIES" description="The functionalities of toolbar buttons" url="The functionalities of toolbar buttons.htm"/>
+                <node id="IDS_HELP_STATUSBAR" description="The status bar of application window" url="The status bar of application window.htm"/>
+            </node>
+            <node id="IDS_HELP_CHILDFRAMES" description="MDI Child windows.htm" url="MDI Child windows.htm">
+                <node id="IDS_HELP_DEALING_RATES_WND" description="Dealing Rates window" url="Dealing Rates window.htm"/>
+                <node id="IDS_HELP_ORDERS_WND" description="Orders window" url="Orders window.htm"/>
+                <node id="IDS_HELP_OPEN_POSITIONS_WND" description="Open positions window" url="Open positions window.htm"/>
+                <node id="IDS_HELP_ACCOUNTS_WND" description="Accounts window" url="Accounts window.htm"/>
+                <node id="IDS_HELP_SUMMARY_WND" description="Summary window" url="Summary window.htm"/>
+            </node>
+            <node id="IDS_HELP_DIALOGS" description="Login dialogue" >
+                <node id="IDS_HELP_LOGIN_DLG" description="Login dialogue" url="Login dialogue.htm"/>
+                <node id="IDS_HELP_MARKET_ORDER_DLG" description="Market Order dialog" url="Market Order dialog.htm"/>
+                <node id="IDS_HELP_ENTRY_ORDER_DLG" description="Entry Order dialog" url="Entry Order dialog.htm"/>
+                <node id="IDS_HELP_CHANGE_ENTRY_ORDER_DLG" description="Change Entry Order dialog" url="Change Entry Order dialog.htm"/>
+                <node id="IDS_HELP_STOP_LIMIT_DLG" description="Set Stop-Limit dialog" url="Set StopLimit dialog.htm"/>
+                <node id="IDS_HELP_CLOSE_POSITION_DLG" description="Close Position dialog" url="Close Position dialog.htm"/>
+            </node>
+            <node id="IDS_HELP_MESSAGE_BOXES" description="Message Boxes">
+                <node id="IDS_HELP_MESSAGE_BOXES_SUB" description="Message Boxes" url="Message Boxes.htm"/>
+            </node>
+        </node>
+        <node id="IDS_HELP_SCENARIOS" description="Scenarios" >
+            <node id="IDS_HELP_MARKET" description="Market" url="Scenarios.htm"/>
+            <node id="IDS_HELP_ENTRY" description="Entry" url="Entry.htm"/>
+        </node>
+    </node>
+</ContentTree>

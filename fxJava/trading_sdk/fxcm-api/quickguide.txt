@@ -1,0 +1,57 @@
+Quick notes regarding QATest example:
+---------------------------------------------
+To run, the following needs to be passed as the program arguments:  <test_command> <loginid> <loginpwd> <connection_name> <hostUrl>
+
+	Where
+		test_command is one of the following:
+		   LISTEN: login and print out incoming message stream to stdout
+		   CMO: createMarketOrder (previously quoted)
+		   SSLMO: set Stop/Limit on an open position
+		   USLMO: update Stop/Limit price on a positon 
+		   DSLMO: delete Stop/Limit from a position
+		   CEO: create entry order 
+		   SSLEO: set Stop/Limit on an entry order
+		   USLEO: update Stop/Limit on an entry order
+		   DSLEO: remove Stop/Limit on an entry order
+		   DEO: remove Entry Order
+		   CLOSEMO: close positon
+		   UREO: Update rate on an entry order
+		   LISTEN: Just listen for message, do not do anything
+		loginid: 
+		   given out
+		loginpwd:
+		   given out
+		connection_name:
+		   Demo   
+		hostUrl: 
+		   http://www.fxcorporate.com/Hosts.jsp  
+		   
+
+Of course, you can create your own java files based on the QATest.  
+Source code for QATest is provided.  
+JVM parameter must always be set to enable secure connection.   
+
+Directory Structure:
+---------------------------------------------
+->javadoc       
+    contains javadocs for fxmsg.jar and fxcm-api.jar
+->src           
+    src code for fxcm-api
+->test          
+    bat scripts to run tests, they will need edits for user pass fields which you will receive.
+->FXCMfix.doc   
+    fxcm fix implementation specs
+->Java FXCM Trading API.doc 
+    beginnings of further api documentation
+->build.txt 
+    build number of the api
+->changes.txt
+    revision history
+->quickquide.txt
+    this document
+->fxcm-api.jar
+    the primary api jar
+->fxmsg.jar
+    dependency of fxcm-api.jar
+->build.xml
+    ant build script for this distro

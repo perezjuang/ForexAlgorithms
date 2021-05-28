@@ -1,0 +1,17 @@
+com.fxcm.external.api.transport
+com.fxcm.external.api.transport.exception
+com.fxcm.external.api.transport.listeners
+com.fxcm.external.api.util
+com.fxcm.fix
+com.fxcm.fix.admin
+com.fxcm.fix.custom
+com.fxcm.fix.custom.news
+com.fxcm.fix.custom.zdas
+com.fxcm.fix.entity
+com.fxcm.fix.other
+com.fxcm.fix.posttrade
+com.fxcm.fix.pretrade
+com.fxcm.fix.pretrade.inner
+com.fxcm.fix.trade
+com.fxcm.messaging
+com.fxcm.messaging.xtp

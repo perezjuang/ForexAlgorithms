@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="Trade Station" default="run" basedir=".">
+    <property name="src" value="src/main" />
+    <property name="build" value="classes" />
+    <property name="lib" value="lib" />
+    <property name="classpath" value="${lib}\fxcm-api.jar;${lib}\fxmsg.jar;${lib}\commons-logging.jar;" />
+
+    <!-- Compile the code -->
+    <target name="compile" depends="clean,init">
+        <javac srcdir="${src}" destdir="${build}" debug="true">
+            <classpath path="${classpath}" />
+        </javac>
+
+        <copy todir="${build}">
+            <fileset dir="${src}">
+                <include name="**/*.ini" />
+                <include name="**/*.properties" />
+                <include name="**/*.gif" />
+                <include name="**/*.xml" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}" />
+    </target>
+
+    <target name="init">
+        <mkdir dir="${build}" />
+    </target>
+
+    <target name="dist" depends="compile">
+        <jar jarfile="${lib}/tradestation.jar" basedir="${build}">
+            <fileset dir="resources/help_src/">
+                <include name="**/*.*" />
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="run">
+        <java classname="fxts.stations.trader.TradeApp" fork="yes">
+            <classpath>
+                <pathelement location="${lib}/tradestation.jar" />
+                <pathelement location="${lib}/fxcm-api.jar" />
+                <pathelement location="${lib}/fxmsg.jar" />
+                <pathelement location="${lib}/commons-logging.jar" />
+            </classpath>
+            <jvmarg value="-Dfxts.persistent_storage_class=fxts.stations.util.PropertiesPersistentStorage" />
+        </java>
+    </target>
+
+    <target name="cleanrun" depends="dist,run" />    
+</project>
