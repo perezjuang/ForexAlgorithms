@@ -186,32 +186,33 @@ def StrategyStart():
     Update()
     while True:
         currenttime = dt.datetime.now()
-        if timeframe == "m1" and currenttime.second == 0 and getLatestPriceData():
-            Update()
+        if timeframe == "m1" and currenttime.second == 0:
+            if getLatestPriceData():
+                Update()
             # time.sleep(10)
-        elif timeframe == "m5" and currenttime.second == 0 and currenttime.minute % 5 == 0 and getLatestPriceData():
-            Update()
+        elif timeframe == "m5" and currenttime.second == 0 and currenttime.minute % 5 == 0:
+            if getLatestPriceData():
+                Update()
             # time.sleep(240)
-        elif timeframe == "m15" and currenttime.second == 0 and currenttime.minute % 15 == 0 and getLatestPriceData():
-            Update()
+        elif timeframe == "m15" and currenttime.second == 0 and currenttime.minute % 15 == 0:
+            if getLatestPriceData():
+                Update()
             # time.sleep(840)
-        elif timeframe == "m30" and currenttime.second == 0 and currenttime.minute % 30 == 0 and getLatestPriceData():
-            Update()
+        elif timeframe == "m30" and currenttime.second == 0 and currenttime.minute % 30 == 0:
+            if getLatestPriceData():
+                Update()
             # time.sleep(1740)
-            UpdatePlotter()
-        elif currenttime.second == 0 and currenttime.minute == 0 and getLatestPriceData():
-            Update()
+        elif currenttime.second == 0 and currenttime.minute == 0:
+            if getLatestPriceData():
+                Update()
             # time.sleep(3540)
-            UpdatePlotter()
-        # time.sleep(1)
         UpdatePlotter()
         if currenttime.second == 0:
             print(" - " + str(currenttime))
 
 
-
 def getLatestPriceData():
-    global pricedata , con
+    global pricedata, con
     print("Get Prices")
     open_conexion = True
     while open_conexion:
@@ -380,7 +381,7 @@ def Update():
             print("	  Cerrando Ventas Abiertas...\n")
             operacioncompra = False
             exit("B")
-
+    time.sleep(1)
     print(str(dt.datetime.now()) + " " + timeframe + " Verificacion Realizada.\n")
 
 
