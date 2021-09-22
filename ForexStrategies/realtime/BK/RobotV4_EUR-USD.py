@@ -65,7 +65,7 @@ open_conexion = True
 while open_conexion:
     try:
         print("Iniciando Conexion " + symbol)
-        con = fxcmpy.fxcmpy(config_file='../fxcm.cfg', server='demo')
+        con = fxcmpy.fxcmpy(config_file='../../fxcm.cfg', server='demo')
 
         print("Conexion Iniciada " + symbol)
         open_conexion = False

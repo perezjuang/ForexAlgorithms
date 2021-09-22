@@ -98,6 +98,7 @@ order2 = con.open_trade(symbol='EUR/JPY', is_buy=True,
 # Close position by specifying the tradeId
 
 pos = con.get_open_position(65680347)
+
 pos.close()
 
 # Close positions by specifying the currency pair
