@@ -7,7 +7,7 @@ import datetime as dt
 
 #"con = fxcmpy.fxcmpy(config_file='../fxcm.cfg')
 #con = fxcmpy.fxcmpy(access_token ='25e7bb74fafe7aab29efd848d4d1f8b4e79bc483', log_level='error',log_file=None)
-con = fxcmpy.fxcmpy(access_token='d1a05f623d2a396ec7f7ce33ee90721f0acdf456', log_level='debug', server='demo', log_file='log.txt')
+con = fxcmpy.fxcmpy(access_token='d1a05f623d2a396ec7f7ce33ee90721f0acdf456', log_level='debug', server='demo', log_file='../log.txt')
 config = configparser.ConfigParser()
 config.read('RobotV4.ini')
 

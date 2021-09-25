@@ -2,10 +2,6 @@ import configparser
 import datetime as dt
 import os
 import time
-# import only system from os
-from os import system, name
-# import sleep to show output for some time period
-from time import sleep
 import fxcmpy
 import matplotlib.pyplot as plt
 import numpy as np
@@ -13,8 +9,8 @@ import pandas as pd
 from pyti.simple_moving_average import simple_moving_average as sma
 from pyti.stochastic import percent_k as per_k
 from pyti.stochastic import percent_d as per_d
-# from pyti.moving_average_convergence_divergence import percent_d as per_d
 
+from pyti.relative_strength_index import relative_strength_index as rsi
 
 import Probabilidades.RegrsionLineal2 as regresionlineal2
 
@@ -42,7 +38,7 @@ amount = int(time_frame_operations['amount'])
 stop = int(time_frame_operations['stop'])
 limit = int(time_frame_operations['limit'])
 trailing_step = int(time_frame_operations['trailing_step'])
-
+SHOWGUI = int(time_frame_operations['SHOWGUI'])
 macdSlow = 26
 macdFast = 12
 macdSmooth = 9
@@ -61,12 +57,12 @@ con = None
 while open_conexion:
     try:
         print("Opening First Conection")
-        con = fxcmpy.fxcmpy(access_token=token, log_level="error", log_file=None)
-        print("Conection Stablished")
+        con = fxcmpy.fxcmpy(access_token=token, server='demo', log_level="error", log_file=None)
+        print(con.connection_status)
         open_conexion = False
     except Exception as e:
         print("\n1.An exception occurred Obtaining Conexion: " + symbol + " Exception: " + str(e))
-        time.sleep(120)
+        time.sleep(2)
         open_conexion = True
 
 pricedata_stadistics = pd.DataFrame([],
@@ -76,47 +72,48 @@ pricedata_stadistics = pd.DataFrame([],
                                              'pos',
                                              'y_pred',
                                              'y_pred_print', 'x_pred_print', 'tickqty', 'per_k', 'per_d',
-                                             'lower_sto', 'upper_sto',
-                                             'macd', 'signal', 'hist', 'macdline0', 'macdoperSale', 'macdoperBuy'
+                                             'lower_sto', 'upper_sto', "n_high", "n_low"
+                                                                                 'macd', 'signal', 'hist', 'macdline0',
+                                             'macdoperSale', 'macdoperBuy'
                                              ])
+if SHOWGUI == 1:
+    plt.style.use('dark_background')
+    plt.ion()
+    plt.show(block=False)
 
-plt.style.use('dark_background')
-plt.ion()
-plt.show(block=False)
+    fig = plt.figure()
 
-fig = plt.figure()
+    mng = plt.get_current_fig_manager()
+    mng.set_window_title(symbol)
 
-mng = plt.get_current_fig_manager()
-mng.set_window_title(symbol)
+    ax1 = fig.add_subplot(5, 1, 1)
+    ax1.clear()
 
-ax1 = fig.add_subplot(5, 1, 1)
-ax1.clear()
+    ax2 = fig.add_subplot(5, 1, 2)
+    ax2.clear()
 
-ax2 = fig.add_subplot(5, 1, 2)
-ax2.clear()
+    ax3 = fig.add_subplot(5, 1, 3)
+    ax3.clear()
 
-ax3 = fig.add_subplot(5, 1, 3)
-ax3.clear()
+    ax4 = fig.add_subplot(5, 1, 4)
+    ax4.clear()
 
-ax4 = fig.add_subplot(5, 1, 4)
-ax4.clear()
+    ax5 = fig.add_subplot(5, 1, 5)
+    ax5.clear()
 
-ax5 = fig.add_subplot(5, 1, 5)
-ax5.clear()
+    linePrice, = ax1.plot([], [], label='Precio ' + timeframe + ' ' + symbol)
+    lineEmaFast, = ax1.plot([], [], label='EMA Fast ' + str(fast_sma_periods))
+    lineEmaSlow, = ax1.plot([], [], label='EMA Slow ' + str(slow_sma_periods), color='green')
+    lineRegrbidClose, = ax2.plot([], [], label='Regresion Lineal Precio ' + timeframe, color='silver', linestyle='--')
 
-linePrice, = ax1.plot([], [], label='Precio ' + timeframe + ' ' + symbol)
-lineEmaFast, = ax1.plot([], [], label='EMA Fast ' + str(fast_sma_periods))
-lineEmaSlow, = ax1.plot([], [], label='EMA Slow ' + str(slow_sma_periods), color='green')
-lineRegrbidClose, = ax2.plot([], [], label='Regresion Lineal Precio ' + timeframe, color='silver', linestyle='--')
+    stoPer_k, = ax4.plot([], [], label='K ' + timeframe, color='green')
+    stoPer_d, = ax4.plot([], [], label='D ' + timeframe, color='red')
+    stoLower, = ax4.plot([], [], label='Lower ' + timeframe, color='white', linestyle='--')
+    stoUpper, = ax4.plot([], [], label='Upper ' + timeframe, color='white', linestyle='--')
 
-stoPer_k, = ax4.plot([], [], label='K ' + timeframe, color='green')
-stoPer_d, = ax4.plot([], [], label='D ' + timeframe, color='red')
-stoLower, = ax4.plot([], [], label='Lower ' + timeframe, color='white', linestyle='--')
-stoUpper, = ax4.plot([], [], label='Upper ' + timeframe, color='white', linestyle='--')
-
-macdLine, = ax5.plot([], color='grey', linewidth=1.5, label='MACD')
-macdSignal, = ax5.plot([], color='skyblue', linewidth=1.5, label='SIGNAL')
-macdline0, = ax5.plot([], color='green', linewidth=1.5)
+    macdLine, = ax5.plot([], color='grey', linewidth=1.5, label='MACD')
+    macdSignal, = ax5.plot([], color='skyblue', linewidth=1.5, label='SIGNAL')
+    macdline0, = ax5.plot([], color='green', linewidth=1.5)
 
 
 def UpdatePlotter():
@@ -186,51 +183,84 @@ def StrategyStart():
     Update()
     while True:
         currenttime = dt.datetime.now()
+        if currenttime.second == 0:
+            print(str(currenttime))
         if timeframe == "m1" and currenttime.second == 0:
             if getLatestPriceData():
                 Update()
+            # if SHOWGUI == 0:
             # time.sleep(10)
         elif timeframe == "m5" and currenttime.second == 0 and currenttime.minute % 5 == 0:
             if getLatestPriceData():
                 Update()
-            # time.sleep(240)
+            # if SHOWGUI == 0:
+            #    time.sleep(240)
         elif timeframe == "m15" and currenttime.second == 0 and currenttime.minute % 15 == 0:
             if getLatestPriceData():
                 Update()
-            # time.sleep(840)
+            # if SHOWGUI == 0:
+            #    time.sleep(840)
         elif timeframe == "m30" and currenttime.second == 0 and currenttime.minute % 30 == 0:
             if getLatestPriceData():
                 Update()
-            # time.sleep(1740)
+            # if SHOWGUI == 0:
+            #    time.sleep(1740)
         elif currenttime.second == 0 and currenttime.minute == 0:
             if getLatestPriceData():
                 Update()
-            # time.sleep(3540)
-        UpdatePlotter()
-        if currenttime.second == 0:
-            print(" - " + str(currenttime))
+            # if SHOWGUI == 0:
+            #    time.sleep(3540)
+
+        if SHOWGUI == 1:
+            UpdatePlotter()
+        else:
+            time.sleep(1)
 
 
 def getLatestPriceData():
-    global pricedata, con
-    print("Get Prices")
-    open_conexion = True
-    while open_conexion:
+    global pricedata, con, token
+    print("Operacion Compra: " + str(operacioncompra) + " - Operacion Venta " + str(operacionventa))
+    print(con.connection_status)
+    if con.connection_status == "established":
         try:
+            print("Geting Prices")
             new_pricedata = con.get_candles(symbol, period=timeframe, number=numberofcandles)
             print("Prices Recived")
-            if new_pricedata.index.values[len(new_pricedata.index.values) - 1] != pricedata.index.values[
-                len(pricedata.index.values) - 1]:
-                pricedata = new_pricedata
-                return True
-            else:
-                print("Prices not Updated")
-                time.sleep(120)
+            if new_pricedata.size == 0:
+                print("Prices not Updated and not recived")
                 return False
+            else:
+                if new_pricedata.index.values[len(new_pricedata.index.values) - 1] != pricedata.index.values[
+                    len(pricedata.index.values) - 1]:
+                    pricedata = new_pricedata
+                else:
+                    print("Prices not Updated")
+            return True
         except Exception as e:
             print("\n1.An exception occurred Obtaining Prices: " + symbol + " Exception: " + str(e))
-            time.sleep(120)
-            print("\n2.Try Again")
+            return False
+    else:
+        try:
+            print("Opening Conection demo 2")
+            con.close()
+            con = fxcmpy.fxcmpy(access_token=token, erver='demo2', log_level="error", log_file=None)
+            print("Conection Stablished")
+            print(con.connection_status + " - - ")
+            return False
+        except Exception as e:
+            print("\n1.An exception occurred Obtaining Conexion: " + symbol + " Exception: " + str(e))
+            time.sleep(60)
+
+        try:
+            print("Opening Conection demo 1")
+            con.close()
+            con = fxcmpy.fxcmpy(access_token=token, erver='demo', log_level="error", log_file=None)
+            print("Conection Stablished")
+            print(con.connection_status + " - - ")
+            return False
+        except Exception as e:
+            print("\n1.An exception occurred Obtaining Conexion: " + symbol + " Exception: " + str(e))
+            time.sleep(60)
             return False
 
 
@@ -241,6 +271,13 @@ def Update():
 
     pricedata_stadistics['index'] = pricedata['bidclose'].index
     pricedata_stadistics['bidclose'] = pricedata['bidclose'].values
+    pricedata_stadistics['bidhigh'] = pricedata['bidhigh'].values
+    pricedata_stadistics['askclose'] = pricedata['askclose'].values
+    pricedata_stadistics['askhigh'] = pricedata['askhigh'].values
+    pricedata_stadistics['asklow'] = pricedata['asklow'].values
+    pricedata_stadistics['askclose'] = pricedata['askclose'].values
+    pricedata_stadistics['bidlow'] = pricedata['bidlow'].values
+
     pricedata_stadistics['tickqty'] = pricedata['tickqty'].values
 
     # Calculate Indicators
@@ -250,15 +287,31 @@ def Update():
     pricedata_stadistics['emaFast'] = iFastSMA
     pricedata_stadistics['emaSlow'] = iSlowSMA
 
-    data_per_k = per_k(pricedata['bidclose'], stoK)
-    data_per_d = per_d(pricedata['bidclose'], stoD)
+    # Adds a "n_high" column with max value of previous 14 periods
+    pricedata_stadistics['n_high'] = pricedata_stadistics['bidhigh'].rolling(stoK).max()
+    # Adds an "n_low" column with min value of previous 14 periods
+    pricedata_stadistics['n_low'] = pricedata_stadistics['bidlow'].rolling(stoK).min()
+    # Uses the min/max values to calculate the %k (as a percentage)
+    pricedata_stadistics['per_k'] = (pricedata_stadistics['bidclose'] - pricedata_stadistics['n_low']) * 100 / (
+            pricedata_stadistics['n_high'] - pricedata_stadistics['n_low'])
+    # Uses the %k to calculates a SMA over the past 3 values of %k
+    pricedata_stadistics['per_d'] = pricedata_stadistics['per_k'].rolling(stoD).mean()
 
-    pricedata_stadistics['per_k'] = data_per_k
-    pricedata_stadistics['per_d'] = data_per_d
+    # data_per_k = per_k(pricedata['bidclose'], stoK)
+    # data_per_d = per_d(pricedata['bidclose'], stoD)
+
+    data_per_k = pricedata_stadistics['per_k']
+    data_per_d = pricedata_stadistics['per_d']
+    # pricedata_stadistics['per_k'] = data_per_k
+    # pricedata_stadistics['per_d'] = data_per_d
+
+    # Calcular Indicador
+    iRSI = rsi(pricedata_stadistics['bidclose'], 15)
+    print("RSI: " + str(iRSI[len(iRSI) - 1]))
 
     for index, row in pricedata_stadistics.iterrows():
-        pricedata_stadistics.loc[index, 'lower_sto'] = 0.20
-        pricedata_stadistics.loc[index, 'upper_sto'] = 0.80
+        pricedata_stadistics.loc[index, 'lower_sto'] = 20
+        pricedata_stadistics.loc[index, 'upper_sto'] = 80
         pricedata_stadistics.loc[index, 'macdline0'] = 0.00
 
     # ***********************************************************
@@ -313,11 +366,15 @@ def Update():
     pricedata_stadistics['hist'] = pd.DataFrame(pricedata_stadistics['macd'] - pricedata_stadistics['signal'])
 
     # Imprimir Precio/Indicador
-    print("Precio Cierre: " + str(pricedata['bidclose'][len(pricedata) - 1]))
-    print("Tendencia Regresion Lineal: " + lv_Tendency)
-    lv_signal = pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['signal']
+    # print("Precio Cierre: " + str(pricedata['bidclose'][len(pricedata) - 1]))
 
-    if data_per_k[len(data_per_k) - 1] <= 0.20 and crossesOver(data_per_k, data_per_d) and lv_signal <= macdsub:
+    # print("Tendencia Regresion Lineal: " + lv_Tendency)
+    lv_signal = pricedata_stadistics.iloc[len(pricedata_stadistics) - 1]['signal']
+    print("MACD Signal: " + str(lv_signal) + " SubValuacion:  " + str(macdsub) + " SobreValuacion:  " + str(macduper))
+    print("STO D" + str(data_per_d[len(data_per_d) - 1]))
+
+    if iRSI[len(iRSI) - 1] <= 40 and crossesOver(data_per_d,
+                                                 pricedata_stadistics['lower_sto']) and lv_signal <= macdsub:
         print("	 SEÑAL DE COMPRA ! \n")
         print('''        
               __,_,
@@ -345,7 +402,7 @@ def Update():
     # Verifica el Cruce del SMA para Abajo.
     # if crossesUnder(data_per_d, 0.80):
     # if crossesUnder(pricedata_stadistics['signal'], 0.0004):
-    if data_per_k[len(data_per_k) - 1] >= 0.80 and crossesUnder(data_per_k, data_per_d) and lv_signal >= macduper:
+    if iRSI[len(iRSI) - 1] >= 60 and crossesUnder(data_per_d, pricedata_stadistics['upper_sto']) and lv_signal >= macduper:
         print("	  SEÑAL DE VENTA ! \n")
         print('''
                __
@@ -369,19 +426,18 @@ def Update():
             operacionventa = True
 
     # Cerrar Ventas #########################################
-    if operacionventa and data_per_k[len(data_per_k) - 1] <= 0.20 and crossesOver(data_per_k, data_per_d):
+    if operacionventa and crossesOver(data_per_d, pricedata_stadistics['lower_sto']):
         if countOpenTrades("S") > 0:
             print("	  Cerrando Ventas Abiertas...\n")
             operacionventa = False
             exit("S")
 
     # Cerrar Compras #########################################
-    if operacioncompra and data_per_k[len(data_per_k) - 1] >= 0.80 and crossesUnder(data_per_k, data_per_d):
+    if operacioncompra and crossesUnder(data_per_d, pricedata_stadistics['upper_sto']):
         if countOpenTrades("B") > 0:
-            print("	  Cerrando Ventas Abiertas...\n")
+            print("	  Cerrando Compras Abiertas...\n")
             operacioncompra = False
             exit("B")
-    time.sleep(1)
     print(str(dt.datetime.now()) + " " + timeframe + " Verificacion Realizada.\n")
 
 
