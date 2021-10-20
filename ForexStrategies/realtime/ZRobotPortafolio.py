@@ -9,6 +9,8 @@ import time
 #########################################################
 ### PORTAFOLIO
 #########################################################
+from realtime.ZRobotOOP import ZRobotOOP
+
 config = configparser.ConfigParser()
 config.read('RobotV5.ini')
 time_frame_operations = config['timeframe']
@@ -20,17 +22,17 @@ while open_conexion:
         print("Opening Conection")
         con = fxcmpy.fxcmpy(access_token=token, server='demo', log_level="error", log_file=None)
 
-        thread1 = ZRobotOOP("EUR/USD", con)
+        thread1 = ZRobotOOP("USD/JPY", con)
         thread1.start()
-        #thread2 = ZRobotOOP("AUD/JPY", con)
-        #thread2.start()
-        #thread3 = ZRobotOOP("AUD/USD", con)
-        #thread3.start()
-        #thread4 = ZRobotOOP("GBP/USD", con)
-        #thread4.start()
-        #thread5 = ZRobotOOP("EUR/JPY", con)
-        #thread5.start()
-        #thread6 = ZRobotOOP("USD/JPY", con)
+        thread2 = ZRobotOOP("AUD/JPY", con)
+        thread2.start()
+        thread3 = ZRobotOOP("AUD/USD", con)
+        thread3.start()
+        thread4 = ZRobotOOP("GBP/USD", con)
+        thread4.start()
+        thread5 = ZRobotOOP("EUR/JPY", con)
+        thread5.start()
+        #thread6 = ZRobotOOP("EUR/USD", con)
         #thread6.start()
         #thread7 = ZRobotOOP("NZD/USD", con)
         #thread7.start()
@@ -46,9 +48,9 @@ while open_conexion:
             print("***********************************************")
             if con.connection_status == "aborted":
                 thread1.exitFlag = True
-                #thread2.exitFlag = True
-                #thread3.exitFlag = True
-                #thread4.exitFlag = True
+                thread2.exitFlag = True
+                thread3.exitFlag = True
+                thread4.exitFlag = True
                 #thread5.exitFlag = True
                 #thread6.exitFlag = True
                 #thread7.exitFlag = True

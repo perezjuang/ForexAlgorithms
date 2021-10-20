@@ -10,13 +10,10 @@ from pyti.exponential_moving_average import exponential_moving_average as ema
 # Allows for printing the whole data frame
 pd.set_option('display.max_columns', None)
 pd.set_option('display.max_rows', None)
-
 con = fxcmpy.fxcmpy(config_file='fxcm.cfg')
 
 # retrieve daily candles for the GBP/JPY currency pair from 01/01/2016 until 06/10/2018
-
-df = con.get_candles('GBP/JPY', period='D1', start=dt.datetime(2016, 1, 1), end=dt.datetime(2018, 6, 10))
-
+df = con.get_candles('EUR/USD', period='m5', start=dt.datetime(2021, 5, 1), end=dt.datetime(2021, 9, 29))
 # df = pd.read_csv('historical_data.csv', index_col = 0, parse_dates=True)
 
 """<h3>Define the EMA Strategy</h3>"""
@@ -39,7 +36,7 @@ df['position'] = df['signal'].diff()
 
 # Check on the dataframe to see the newly created columns
 
-df
+print(df)
 
 """<h3>A Simple Backtest</h3>"""
 
@@ -89,7 +86,7 @@ for i, row in df.iterrows():
 
 # Check on the dataframe to see our newly created columns
 
-df
+print(df)
 
 """<h3>Visualizing Trading Signals</h3>"""
 
