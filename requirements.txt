@@ -1,0 +1,11 @@
+fxcmpy==1.2.6
+python-engineio==3.9.0
+python-socketio==4.4.0
+pandas~=1.2.4
+numpy~=1.20.3
+matplotlib~=3.4.2
+
+pyti~=0.2.2
+configparser~=5.0.2
+requests~=2.25.1
+python-dateutil~=2.8.1
