@@ -1,18 +1,16 @@
 import configparser
 import datetime as dt
+import threading
 import time
 import matplotlib.pyplot as plt
 import fxcmpy
 import numpy as np
 import pandas as pd
 from pyti.simple_moving_average import simple_moving_average as sma
-
 from pyti.relative_strength_index import relative_strength_index as rsi
 import Probabilidades.RegrsionLineal2 as regresionlineal2
 
-import threading
-import sys
-
+from playsound import playsound
 
 class ZRobotOOP_PICOSMACD(threading.Thread):
     # instance attributes
@@ -508,6 +506,7 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.logMessages = self.logMessages + "\n" + "	  Abrir Operacion de Compra..."
             if self.countOpenTrades("B") == 0:
                 self.enter("B")
+                playsound("file_example_MP3_700KB.mp3")
                 self.operacioncompra = True
 
         # Verifica el Cruce del SMA para Abajo.
@@ -540,6 +539,7 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.logMessages = self.logMessages + "\n" + "	  Abrir Operacion de Venta..."
             if self.countOpenTrades("S") == 0:
                 self.enter("S")
+                playsound("file_example_MP3_700KB.mp3")
                 self.operacionventa = True
 
         # Cerrar Ventas #########################################
