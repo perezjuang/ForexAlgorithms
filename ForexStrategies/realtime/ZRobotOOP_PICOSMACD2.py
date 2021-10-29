@@ -103,9 +103,14 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.lineEmaFast, = self.ax1.plot([], [], label='EMA Fast ' + str(self.fast_sma_periods))
         self.lineEmaSlow, = self.ax1.plot([], [], label='EMA Slow ' + str(self.slow_sma_periods), color='green')
         # self.lineEmaSlow2, = self.ax1.plot([], [], label='EMA Slow 2:  ' + str(self.slow_sma_periods2), color='red')
+
+
         self.lineRegrbidClose, = self.ax2.plot([], [], label='Regresion Lineal Precio ' + self.timeframe,
                                                color='silver',
                                                linestyle='--')
+
+        self.lineRegrbidClosePrice, = self.ax2.plot([], [], label='Precio Cierre ' + self.timeframe,
+                                               color='green')
 
         self.linestoK, = self.ax3.plot([], [], label='k' + self.timeframe, color='green')
         self.linestoD, = self.ax3.plot([], [], label='d' + self.timeframe, color='red')
@@ -366,9 +371,10 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         # Calculate Indicators
         iFastSMA = sma(self.pricedata['bidclose'], self.fast_sma_periods)
         iSlowSMA = sma(self.pricedata['bidclose'], self.slow_sma_periods)
-
         self.pricedata_stadistics['emaFast'] = iFastSMA
         self.pricedata_stadistics['emaSlow'] = iSlowSMA
+
+
 
         # Adds a "n_high" column with max value of previous 14 periods
         self.pricedata_stadistics['n_high'] = self.pricedata_stadistics['bidhigh'].rolling(self.stoK).max()
@@ -398,6 +404,11 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.logMessages = self.logMessages + "\n" + ("STO K " + str(data_per_k[len(data_per_k) - 1]))
         self.logMessages = self.logMessages + "\n" + ("STO D " + str(data_per_d[len(data_per_d) - 1]))
 
+
+
+
+
+
         # Calcular Indicador
         iRSI = rsi(self.pricedata_stadistics['bidclose'], 15)
         self.logMessages = self.logMessages + "\n" + ("RSI: " + str(iRSI[len(iRSI) - 1]))
@@ -409,15 +420,18 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.pricedata_stadistics.loc[index, 'macdsub'] = self.macdsub
             self.pricedata_stadistics.loc[index, 'macdupper'] = self.macduper
 
+
+
+
         # ***********************************************************
         # *  Regresion al precio de cierre las velas ================
         # ***********************************************************
         self.pricedata_stadistics['x'] = np.arange(len(self.pricedata_stadistics))
+
         # ************* Calcular la poscion Relativa Y
         for index, row in self.pricedata_stadistics.iterrows():
             self.pricedata_stadistics.loc[index, 'y'] = int(
                 '{:.5f}'.format((self.pricedata_stadistics.loc[index, 'bidclose'])).replace('.', ''))
-
         max_value = max(np.array(self.pricedata_stadistics['y'].values))
         min_value = min(np.array(self.pricedata_stadistics['y'].values))
         for index, row in self.pricedata_stadistics.iterrows():
@@ -450,6 +464,14 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
                 self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] > \
                 self.pricedata_stadistics.iloc[1]['y_pred']:
             lv_Tendency = "Alcista"
+
+
+
+
+
+
+
+
 
         # MACD        ########################################################################
         exp1 = self.pricedata_stadistics['bidclose'].ewm(span=self.macdFast, adjust=False).mean()
