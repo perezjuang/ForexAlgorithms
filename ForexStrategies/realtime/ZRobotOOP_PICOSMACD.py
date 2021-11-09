@@ -12,6 +12,7 @@ import Probabilidades.RegrsionLineal2 as regresionlineal2
 
 from playsound import playsound
 
+
 class ZRobotOOP_PICOSMACD(threading.Thread):
     # instance attributes
     def __init__(self, symbol, con):
@@ -54,11 +55,12 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.con = con
         self.pricedata_stadistics = pd.DataFrame([],
                                                  columns=['index', 'indexdates'
-                                                                   'x', 'y'
-                                                                        'bidclose',
+                                                                   'x', 'y', "y_bidhigh", "y_bidlow"
+                                                                             'bidclose', 'bidhigh', 'bidlow',
+
                                                           'pos',
-                                                          'y_pred',
-                                                          'tickqty',
+                                                          'y_pred', "y_pred_bidhigh", "y_pred_bidlow",
+                                                                    'tickqty',
                                                           # STO
                                                           'per_k', 'per_d',
                                                           'lower_sto', 'upper_sto',
@@ -104,13 +106,21 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.lineEmaSlow, = self.ax1.plot([], [], label='EMA Slow ' + str(self.slow_sma_periods), color='green')
         # self.lineEmaSlow2, = self.ax1.plot([], [], label='EMA Slow 2:  ' + str(self.slow_sma_periods2), color='red')
 
-
         self.lineRegrbidClose, = self.ax2.plot([], [], label='Regresion Lineal Precio ' + self.timeframe,
                                                color='silver',
                                                linestyle='--')
 
+
         self.lineRegrbidClosePrice, = self.ax2.plot([], [], label='Precio Cierre ' + self.timeframe,
-                                               color='green')
+                                                    color='green')
+
+
+        self.lineRegrbidHighPrice, = self.ax2.plot([], [], label='BidHigh ' + self.timeframe, color='red',
+                                                   linestyle='--')
+
+        self.lineRegrbidLowPrice, = self.ax2.plot([], [], label='BidLow ' + self.timeframe, color='orange',
+                                                   linestyle='--')
+
 
         self.linestoK, = self.ax3.plot([], [], label='k' + self.timeframe, color='green')
         self.linestoD, = self.ax3.plot([], [], label='d' + self.timeframe, color='red')
@@ -134,8 +144,18 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
                                   self.pricedata_stadistics['emaSlow'].values)
         # self.lineEmaSlow2.set_data(self.pricedata_stadistics_sup['index'].values, self.pricedata_stadistics_sup[
         # 'emaSlow2'].values)
+
+        self.lineRegrbidClosePrice.set_data(self.pricedata_stadistics['x'].values,
+                                            self.pricedata_stadistics['y'].values)
+
         self.lineRegrbidClose.set_data(self.pricedata_stadistics['x'].values,
                                        self.pricedata_stadistics['y_pred'].values)
+
+        self.lineRegrbidHighPrice.set_data(self.pricedata_stadistics['x'].values,
+                                       self.pricedata_stadistics['y_pred_bidhigh'].values)
+
+        self.lineRegrbidLowPrice.set_data(self.pricedata_stadistics['x'].values,
+                                       self.pricedata_stadistics['y_pred_bidlow'].values)
 
         self.linestoK.set_data(self.pricedata_stadistics['x'].values,
                                self.pricedata_stadistics['per_k'].values)
@@ -361,22 +381,20 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.pricedata_stadistics['index'] = self.pricedata['bidclose'].index
         self.pricedata_stadistics['bidclose'] = self.pricedata['bidclose'].values
         self.pricedata_stadistics['bidhigh'] = self.pricedata['bidhigh'].values
+        self.pricedata_stadistics['bidlow'] = self.pricedata['bidlow'].values
         self.pricedata_stadistics['askclose'] = self.pricedata['askclose'].values
         self.pricedata_stadistics['askhigh'] = self.pricedata['askhigh'].values
         self.pricedata_stadistics['asklow'] = self.pricedata['asklow'].values
         self.pricedata_stadistics['askclose'] = self.pricedata['askclose'].values
-        self.pricedata_stadistics['bidlow'] = self.pricedata['bidlow'].values
         self.pricedata_stadistics['tickqty'] = self.pricedata['tickqty'].values
 
-        # Calculate Indicators
+        # Calculate Indicators Medias Moviles
         iFastSMA = sma(self.pricedata['bidclose'], self.fast_sma_periods)
         iSlowSMA = sma(self.pricedata['bidclose'], self.slow_sma_periods)
         self.pricedata_stadistics['emaFast'] = iFastSMA
         self.pricedata_stadistics['emaSlow'] = iSlowSMA
 
-
-
-        # Adds a "n_high" column with max value of previous 14 periods
+        # Stochastic
         self.pricedata_stadistics['n_high'] = self.pricedata_stadistics['bidhigh'].rolling(self.stoK).max()
         # Adds an "n_low" column with min value of previous 14 periods
         self.pricedata_stadistics['n_low'] = self.pricedata_stadistics['bidlow'].rolling(self.stoK).min()
@@ -404,12 +422,7 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.logMessages = self.logMessages + "\n" + ("STO K " + str(data_per_k[len(data_per_k) - 1]))
         self.logMessages = self.logMessages + "\n" + ("STO D " + str(data_per_d[len(data_per_d) - 1]))
 
-
-
-
-
-
-        # Calcular Indicador
+        # RSI
         iRSI = rsi(self.pricedata_stadistics['bidclose'], 15)
         self.logMessages = self.logMessages + "\n" + ("RSI: " + str(iRSI[len(iRSI) - 1]))
 
@@ -420,11 +433,8 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.pricedata_stadistics.loc[index, 'macdsub'] = self.macdsub
             self.pricedata_stadistics.loc[index, 'macdupper'] = self.macduper
 
-
-
-
         # ***********************************************************
-        # *  Regresion al precio de cierre las velas ================
+        # *  Regresion al precio de CIERRE ================
         # ***********************************************************
         self.pricedata_stadistics['x'] = np.arange(len(self.pricedata_stadistics))
 
@@ -467,6 +477,103 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
 
 
 
+        # ***********************************************************
+        # *  Regresion al precio de HIGH ================
+        # ***********************************************************
+        # self.pricedata_stadistics['x'] = np.arange(len(self.pricedata_stadistics))
+
+        # ************* Calcular la poscion Relativa Y
+        for index, row in self.pricedata_stadistics.iterrows():
+            self.pricedata_stadistics.loc[index, 'y_bidhigh'] = int(
+                '{:.5f}'.format((self.pricedata_stadistics.loc[index, 'bidhigh'])).replace('.', ''))
+
+        max_value = max(np.array(self.pricedata_stadistics['y_bidhigh'].values))
+        min_value = min(np.array(self.pricedata_stadistics['y_bidhigh'].values))
+        for index, row in self.pricedata_stadistics.iterrows():
+            value = self.pricedata_stadistics.loc[index, 'y_bidhigh'] - min_value
+            NewPricePosition = ((value * 100) / max_value) * 100
+            self.pricedata_stadistics.loc[index, 'y_bidhigh'] = NewPricePosition
+
+        # ***********  Calcular la poscion Relativa X
+        #max_value = max(np.array(self.pricedata_stadistics['x'].values))
+        #min_value = min(np.array(self.pricedata_stadistics['x'].values))
+        #for index, row in self.pricedata_stadistics.iterrows():
+        #    value = self.pricedata_stadistics.loc[index, 'x'] - min_value
+        #    NewPricePosition = ((value * 100) / max_value)
+        #    self.pricedata_stadistics.loc[index, 'x'] = NewPricePosition
+
+        regresionLineal_xx = np.array(self.pricedata_stadistics['x'].values)
+        regresionLineal_yy = np.array(self.pricedata_stadistics['y_bidhigh'].values)
+
+        regresionLineal_bb = regresionlineal2.estimate_b0_b1(regresionLineal_xx, regresionLineal_yy)
+        y_pred_sup = regresionLineal_bb[0] + regresionLineal_bb[1] * regresionLineal_xx
+        self.pricedata_stadistics['y_pred_bidhigh'] = y_pred_sup
+
+
+        # if self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] < \
+        #        self.pricedata_stadistics.iloc[1]['y_pred'] and \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] < \
+        #        self.pricedata_stadistics.iloc[1]['y_pred']:
+        #    lv_Tendency = "Bajista"
+        # elif self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] > \
+        #        self.pricedata_stadistics.iloc[1]['y_pred'] and \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] > \
+        #        self.pricedata_stadistics.iloc[1]['y_pred']:
+        #    lv_Tendency = "Alcista"
+
+
+
+
+
+        # ***********************************************************
+            # *  Regresion al precio de LOW ================
+        # ***********************************************************
+        # self.pricedata_stadistics['x'] = np.arange(len(self.pricedata_stadistics))
+
+        # ************* Calcular la poscion Relativa Y
+        for index, row in self.pricedata_stadistics.iterrows():
+            self.pricedata_stadistics.loc[index, 'y_bidlow'] = int(
+                '{:.5f}'.format((self.pricedata_stadistics.loc[index, 'bidlow'])).replace('.', ''))
+
+        max_value = max(np.array(self.pricedata_stadistics['y_bidlow'].values))
+        min_value = min(np.array(self.pricedata_stadistics['y_bidlow'].values))
+        for index, row in self.pricedata_stadistics.iterrows():
+            value = self.pricedata_stadistics.loc[index, 'y_bidlow'] - min_value
+            NewPricePosition = ((value * 100) / max_value) * 100
+            self.pricedata_stadistics.loc[index, 'y_bidlow'] = NewPricePosition
+
+        # ***********  Calcular la poscion Relativa X
+        #max_value = max(np.array(self.pricedata_stadistics['x'].values))
+        #min_value = min(np.array(self.pricedata_stadistics['x'].values))
+        #for index, row in self.pricedata_stadistics.iterrows():
+        #    value = self.pricedata_stadistics.loc[index, 'x'] - min_value
+        #    NewPricePosition = ((value * 100) / max_value)
+        #    self.pricedata_stadistics.loc[index, 'x'] = NewPricePosition
+
+        regresionLineal_xx = np.array(self.pricedata_stadistics['x'].values)
+        regresionLineal_yy = np.array(self.pricedata_stadistics['y_bidlow'].values)
+
+        regresionLineal_bb = regresionlineal2.estimate_b0_b1(regresionLineal_xx, regresionLineal_yy)
+        y_pred_sup = regresionLineal_bb[0] + regresionLineal_bb[1] * regresionLineal_xx
+        self.pricedata_stadistics['y_pred_bidlow'] = y_pred_sup
+
+
+        # if self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] < \
+        #        self.pricedata_stadistics.iloc[1]['y_pred'] and \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] < \
+        #        self.pricedata_stadistics.iloc[1]['y_pred']:
+        #    lv_Tendency = "Bajista"
+        # elif self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] > \
+        #        self.pricedata_stadistics.iloc[1]['y_pred'] and \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['y_pred'] > \
+        #        self.pricedata_stadistics.iloc[1]['y_pred']:
+        #    lv_Tendency = "Alcista"
+
+
+
+
+
+
 
 
 
@@ -495,7 +602,7 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.logMessages = self.logMessages + "\n" + ("RSI " + str(iRSI[len(iRSI) - 1]))
 
         # data_per_d['lower_sto']
-        #if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
+        # if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
         #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] > \
         #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
@@ -503,9 +610,9 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
                 self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] > \
                 self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
-        #if self.crossesOver(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] <= 20 and \
-        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] > iFastSMA[
-        #    len(iFastSMA) - 1]:
+            # if self.crossesOver(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] <= 20 and \
+            #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] > iFastSMA[
+            #    len(iFastSMA) - 1]:
             self.logMessages = self.logMessages + "\n" + ("	 SEÑAL DE COMPRA ! \n")
             self.logMessages = self.logMessages + "\n" + ('''        
                   __,_,
@@ -538,9 +645,9 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
                 self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] < \
                 self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
-        #if self.crossesUnder(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] >= 80 and \
-        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] < iFastSMA[
-        #    len(iFastSMA) - 1]:
+            # if self.crossesUnder(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] >= 80 and \
+            #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] < iFastSMA[
+            #    len(iFastSMA) - 1]:
             self.logMessages = self.logMessages + "\n" + "	  SEÑAL DE VENTA ! \n"
             self.logMessages = self.logMessages + "\n" + ('''
                    __
@@ -589,47 +696,48 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.Update()
         while True:
             currenttime = dt.datetime.now()
-            if currenttime.second == 0:
-                self.logMessages = self.logMessages + "\n" + (str(currenttime))
-                print(str(currenttime) + " - " + self.symbol)
 
             if self.timeframe == "m1" and currenttime.second == 0:
                 if self.getLatestPriceData():
                     self.Update()
-                # if SHOWGUI == 0:
-                # time.sleep(10)
+                    print(str(currenttime) + " - " + self.symbol + " - " + self.timeframe)
+                    a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
+                    a_file.write(self.logMessages + "\n")
+                    self.logMessages = ""
+
             elif self.timeframe == "m5" and currenttime.second == 0 and currenttime.minute % 5 == 0:
                 if self.getLatestPriceData():
                     self.Update()
-                # if SHOWGUI == 0:
-                #    time.sleep(240)
+                    print(str(currenttime) + " - " + self.symbol + " - " + self.timeframe)
+                    a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
+                    a_file.write(self.logMessages + "\n")
+                    self.logMessages = ""
+
             elif self.timeframe == "m15" and currenttime.second == 0 and currenttime.minute % 15 == 0:
                 if self.getLatestPriceData():
                     self.Update()
-                # if SHOWGUI == 0:
-                #    time.sleep(840)
+                    print(str(currenttime) + " - " + self.symbol + " - " + self.timeframe)
+                    a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
+                    a_file.write(self.logMessages + "\n")
+                    self.logMessages = ""
+
             elif self.timeframe == "m30" and currenttime.second == 0 and currenttime.minute % 30 == 0:
                 if self.getLatestPriceData():
                     self.Update()
-                # if SHOWGUI == 0:
-                #    time.sleep(1740)
+                    print(str(currenttime) + " - " + self.symbol + " - " + self.timeframe)
+                    a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
+                    a_file.write(self.logMessages + "\n")
+                    self.logMessages = ""
+
             elif currenttime.second == 0 and currenttime.minute == 0:
                 if self.getLatestPriceData():
                     self.Update()
-                # if SHOWGUI == 0:
-                #    time.sleep(3540)
-
-            if currenttime.second == 0:
-                a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
-                a_file.write(self.logMessages + "\n")
-                self.logMessages = ""
-
-            if self.exitFlag:
-                self.logMessages = self.logMessages + "\n" + "Cerrar"
-                sys.exit()
-
+                    print(str(currenttime) + " - " + self.symbol + " - " + self.timeframe)
+                    a_file = open("Log_" + self.symbol.replace("/", "_") + ".txt", "a")
+                    a_file.write(self.logMessages + "\n")
+                    self.logMessages = ""
             self.UpdatePlotter()
-            time.sleep(1)
+            time.sleep(0.4)
 
     def run(self):
         self.logMessages = self.logMessages + "\n" + ("Preparate Start:" + self.symbol)
