@@ -9,7 +9,7 @@ import time
 #########################################################
 ### PORTAFOLIO
 #########################################################
-from realtime.ZRobotOOP_PICOSMACD2 import ZRobotOOP_PICOSMACD
+from realtime.ZRobotOOP_PICOSMACD3 import ZRobotOOP_PICOSMACD
 
 config = configparser.ConfigParser()
 config.read('RobotV5.ini')
