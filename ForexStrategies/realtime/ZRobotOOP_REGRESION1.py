@@ -11,7 +11,6 @@ from pyti.relative_strength_index import relative_strength_index as rsi
 import Probabilidades.RegrsionLineal2 as regresionlineal2
 
 
-
 class ZRobotOOP_PICOSMACD(threading.Thread):
     # instance attributes
     def __init__(self, symbol, con):
@@ -104,13 +103,12 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.lineEmaSlow, = self.ax1.plot([], [], label='EMA Slow ' + str(self.slow_sma_periods), color='green')
         # self.lineEmaSlow2, = self.ax1.plot([], [], label='EMA Slow 2:  ' + str(self.slow_sma_periods2), color='red')
 
-
         self.lineRegrbidClose, = self.ax2.plot([], [], label='Regresion Lineal Precio ' + self.timeframe,
                                                color='silver',
                                                linestyle='--')
 
         self.lineRegrbidClosePrice, = self.ax2.plot([], [], label='Precio Cierre ' + self.timeframe,
-                                               color='green')
+                                                    color='green')
 
         self.linestoK, = self.ax3.plot([], [], label='k' + self.timeframe, color='green')
         self.linestoD, = self.ax3.plot([], [], label='d' + self.timeframe, color='red')
@@ -137,11 +135,8 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.lineRegrbidClose.set_data(self.pricedata_stadistics['x'].values,
                                        self.pricedata_stadistics['y_pred'].values)
 
-
         self.lineRegrbidClosePrice.set_data(self.pricedata_stadistics['x'].values,
-                                       self.pricedata_stadistics['y'].values)
-
-
+                                            self.pricedata_stadistics['y'].values)
 
         self.linestoK.set_data(self.pricedata_stadistics['x'].values,
                                self.pricedata_stadistics['per_k'].values)
@@ -380,8 +375,6 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.pricedata_stadistics['emaFast'] = iFastSMA
         self.pricedata_stadistics['emaSlow'] = iSlowSMA
 
-
-
         # Adds a "n_high" column with max value of previous 14 periods
         self.pricedata_stadistics['n_high'] = self.pricedata_stadistics['bidhigh'].rolling(self.stoK).max()
         # Adds an "n_low" column with min value of previous 14 periods
@@ -410,11 +403,6 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.logMessages = self.logMessages + "\n" + ("STO K " + str(data_per_k[len(data_per_k) - 1]))
         self.logMessages = self.logMessages + "\n" + ("STO D " + str(data_per_d[len(data_per_d) - 1]))
 
-
-
-
-
-
         # Calcular Indicador
         iRSI = rsi(self.pricedata_stadistics['bidclose'], 15)
         self.logMessages = self.logMessages + "\n" + ("RSI: " + str(iRSI[len(iRSI) - 1]))
@@ -425,9 +413,6 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.pricedata_stadistics.loc[index, 'macdline0'] = 0.00
             self.pricedata_stadistics.loc[index, 'macdsub'] = self.macdsub
             self.pricedata_stadistics.loc[index, 'macdupper'] = self.macduper
-
-
-
 
         # ***********************************************************
         # *  Regresion al precio de cierre las velas ================
@@ -471,14 +456,6 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
                 self.pricedata_stadistics.iloc[1]['y_pred']:
             lv_Tendency = "Alcista"
 
-
-
-
-
-
-
-
-
         # MACD        ########################################################################
         exp1 = self.pricedata_stadistics['bidclose'].ewm(span=self.macdFast, adjust=False).mean()
         exp2 = self.pricedata_stadistics['bidclose'].ewm(span=self.macdSlow, adjust=False).mean()
@@ -501,18 +478,21 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
         self.logMessages = self.logMessages + "\n" + ("RSI " + str(iRSI[len(iRSI) - 1]))
 
         # data_per_d['lower_sto']
-        #if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
+        # if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
         #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] > \
         #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
-        if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] > \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
+        # if self.crossesOver(data_per_k, data_per_d) and lv_signal <= self.macdsub and \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] > \
+        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
-        #if self.crossesOver(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] <= 20 and \
+        # if self.crossesOver(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] <= 20 and \
         #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] > iFastSMA[
         #    len(iFastSMA) - 1]:
-            self.logMessages = self.logMessages + "\n" + ("	 SEÑAL DE COMPRA ! \n")
+
+        if self.crossesOver(self.pricedata_stadistics['y'],
+                            self.pricedata_stadistics['y_pred']) and lv_Tendency == "Alcista":
+            self.logMessages = self.logMessages + "\n" + "	 SEÑAL DE COMPRA ! \n"
             self.logMessages = self.logMessages + "\n" + ('''        
                   __,_,
                   [_|_/ 
@@ -534,19 +514,20 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.logMessages = self.logMessages + "\n" + "	  Abrir Operacion de Compra..."
             if self.countOpenTrades("B") == 0:
                 self.enter("B")
-                #playsound("file_example_MP3_700KB.mp3")
+                # playsound("file_example_MP3_700KB.mp3")
                 self.operacioncompra = True
 
         # Verifica el Cruce del SMA para Abajo.
-        # if crossesUnder(data_per_d, 0.80):
-        # if crossesUnder(pricedata_stadistics['signal'], 0.0004):
-        if self.crossesUnder(data_per_k, data_per_d) and lv_signal >= self.macduper and \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] < \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
+        if self.crossesUnder(self.pricedata_stadistics['y'],
+                             self.pricedata_stadistics['y_pred']) and lv_Tendency == "Bajista":
+            # if crossesUnder(pricedata_stadistics['signal'], 0.0004):
+            # if self.crossesUnder(data_per_k, data_per_d) and lv_signal >= self.macduper and \
+            #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] < \
+            #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['macd']:
 
-        #if self.crossesUnder(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] >= 80 and \
-        #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] < iFastSMA[
-        #    len(iFastSMA) - 1]:
+            # if self.crossesUnder(data_per_k, data_per_d) and data_per_d[len(data_per_d) - 1] >= 80 and \
+            #        self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['bidclose'] < iFastSMA[
+            #    len(iFastSMA) - 1]:
             self.logMessages = self.logMessages + "\n" + "	  SEÑAL DE VENTA ! \n"
             self.logMessages = self.logMessages + "\n" + ('''
                    __
@@ -567,28 +548,8 @@ class ZRobotOOP_PICOSMACD(threading.Thread):
             self.logMessages = self.logMessages + "\n" + "	  Abrir Operacion de Venta..."
             if self.countOpenTrades("S") == 0:
                 self.enter("S")
-                #playsound("file_example_MP3_700KB.mp3")
+                # playsound("file_example_MP3_700KB.mp3")
                 self.operacionventa = True
-
-        # Cerrar Ventas #########################################
-        if self.operacionventa and self.crossesOver(self.pricedata_stadistics['macd'],
-                                                    self.pricedata_stadistics['signal']) and \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] <= self.macduper:
-
-            if self.countOpenTrades("S") > 0:
-                self.logMessages = self.logMessages + "\n" + "	  Cerrando Ventas Abiertas..."
-                self.operacionventa = False
-                self.exit("S")
-
-        # Cerrar Compras #########################################
-        if self.operacioncompra and self.crossesUnder(self.pricedata_stadistics['macd'],
-                                                      self.pricedata_stadistics['signal']) and \
-                self.pricedata_stadistics.iloc[len(self.pricedata_stadistics) - 1]['signal'] >= self.macdsub:
-
-            if self.countOpenTrades("B") > 0:
-                self.logMessages = self.logMessages + "\n" + "	  Cerrando Compras Abiertas..."
-                self.operacioncompra = False
-                self.exit("B")
 
         self.logMessages = self.logMessages + "\n" + (str(dt.datetime.now()) + " " + self.timeframe + "Verificacion "
                                                                                                       "Realizada.\n")
@@ -654,6 +615,6 @@ if __name__ == "__main__":
     token = time_frame_operations['token']
     print("Opening Conection")
     con = fxcmpy.fxcmpy(access_token=token, server='demo', log_level="error", log_file=None)
-    a = ZRobotOOP_PICOSMACD("EUR/JPY", con)
+    a = ZRobotOOP_PICOSMACD("EUR/USD", con)
     a.Prepare()
     a.StrategyStart()

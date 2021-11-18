@@ -9,7 +9,7 @@ import time
 #########################################################
 ### PORTAFOLIO
 #########################################################
-from realtime.ZRobotOOP import ZRobotOOP
+from realtime.ZRobotOOP_PICOSMACD2 import ZRobotOOP_PICOSMACD
 
 config = configparser.ConfigParser()
 config.read('RobotV5.ini')
@@ -22,15 +22,15 @@ while open_conexion:
         print("Opening Conection")
         con = fxcmpy.fxcmpy(access_token=token, server='demo', log_level="error", log_file=None)
 
-        thread1 = ZRobotOOP("USD/JPY", con)
+        thread1 = ZRobotOOP_PICOSMACD("USD/JPY", con)
         thread1.start()
-        thread2 = ZRobotOOP("AUD/JPY", con)
+        thread2 = ZRobotOOP_PICOSMACD("AUD/JPY", con)
         thread2.start()
-        thread3 = ZRobotOOP("AUD/USD", con)
+        thread3 = ZRobotOOP_PICOSMACD("AUD/USD", con)
         thread3.start()
-        thread4 = ZRobotOOP("GBP/USD", con)
+        thread4 = ZRobotOOP_PICOSMACD("GBP/USD", con)
         thread4.start()
-        thread5 = ZRobotOOP("EUR/JPY", con)
+        thread5 = ZRobotOOP_PICOSMACD("EUR/JPY", con)
         thread5.start()
         #thread6 = ZRobotOOP("EUR/USD", con)
         #thread6.start()
