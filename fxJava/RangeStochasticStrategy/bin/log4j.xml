@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ - Copyright (c) 2008 FXCM, LLC. All Rights Reserved.
+ - 32 Old Slip, 10th Floor, New York, NY 10005 USA
+ -
+ - THIS SOFTWARE IS THE CONFIDENTIAL AND PROPRIETARY INFORMATION OF
+ - FXCM, LLC. ("CONFIDENTIAL INFORMATION"). YOU SHALL NOT DISCLOSE
+ - SUCH CONFIDENTIAL INFORMATION AND SHALL USE IT ONLY IN ACCORDANCE
+ - WITH THE TERMS OF THE LICENSE AGREEMENT YOU ENTERED INTO WITH
+ - FXCM.
+ - Author: Andre Mermegas
+ - Creation Date: Apr 3, 2008
+ - Creation Time: 2:56:56 PM
+-->
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+    <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%5p (%d) [%t] (%c{1}.%M) - %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="ASYNC" class="org.apache.log4j.AsyncAppender">
+        <param name="Blocking" value="false" />
+        <param name="BufferSize" value="32000"/>
+        <param name="LocationInfo" value="true"/>
+        <appender-ref ref="CONSOLE" />
+        <!--<appender-ref ref="FILE" />-->
+    </appender>
+
+    <appender name="FILE" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="fxcm-api.log" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%5p (%d) [%t] (%c{1}.%M) - %m%n" />
+        </layout>
+    </appender>
+
+    <logger name="com.fxcm" additivity="false">
+        <level value="debug" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="develop.trace.status.com.fxcm.messaging.util.UniversalUserSession" additivity="false">
+        <!--<level value="trace" />-->
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="develop.trace.message.com.fxcm.messaging.util.UniversalUserSession" additivity="false">
+        <!--<level value="trace" />-->
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="develop.trace.marketdata.com.fxcm.messaging.util.UniversalUserSession" additivity="false">
+        <!--<level value="trace" />-->
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="com.fxcm.messaging.util.CfxParser" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="quickfix" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="httpclient" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="org.apache" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="com.fxcm.messaging.util.web" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="com.fxcm.messaging.util.HostReader" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="com.fxcm.messaging.util.pdas" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="com.fxcm.messaging.util.pdas.communicator.Communicator" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <logger name="develop.trace.com.fxcm.messaging.util.pdas.communicator.Communicator" additivity="false">
+        <level value="error" />
+        <appender-ref ref="ASYNC" />
+    </logger>
+
+    <root>
+        <priority value="DEBUG" />
+        <appender-ref ref="ASYNC" />
+    </root>
+</log4j:configuration>
