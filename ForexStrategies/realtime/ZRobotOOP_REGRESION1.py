@@ -615,6 +615,6 @@ if __name__ == "__main__":
     token = time_frame_operations['token']
     print("Opening Conection")
     con = fxcmpy.fxcmpy(access_token=token, server='demo', log_level="error", log_file=None)
-    a = ZRobotOOP_PICOSMACD("EUR/USD", con)
+    a = ZRobotOOP_PICOSMACD("EUR/JPY", con)
     a.Prepare()
     a.StrategyStart()
